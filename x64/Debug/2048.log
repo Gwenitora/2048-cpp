@@ -1,2 +1,9 @@
 ﻿  2048.cpp
-  2048.vcxproj -> C:\Users\gacquart-reylans\Documents\repos\2048-cpp\x64\Debug\2048.exe
+  cell.cpp
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.cpp(1,10): fatal  error C1083: Impossible d'ouvrir le fichier include : 'cell.h' : No such file or directory
+  cmd.cpp
+  game.cpp
+  graphic.cpp
+  table.cpp
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(1,10): fatal  error C1083: Impossible d'ouvrir le fichier include : 'cell.h' : No such file or directory
+  Génération de code en cours...

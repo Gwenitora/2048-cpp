@@ -22,6 +22,15 @@
     <Filter Include="Fichiers sources\Game\Graphic">
       <UniqueIdentifier>{f5a10c13-fd1f-408d-ba2e-fa34ba2f12d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game">
+      <UniqueIdentifier>{e9eac07d-8485-488a-903d-8b6a1a3fdb4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game\Graphic">
+      <UniqueIdentifier>{007f23dd-0a27-45e2-9364-8bf4dbf3e320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game\Table">
+      <UniqueIdentifier>{2e59f0a1-d521-4b0c-8667-f22bd3316242}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp">
@@ -42,5 +51,25 @@
     <ClCompile Include="cmd.cpp">
       <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2048.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Fichiers d%27en-tête\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="cell.h">
+      <Filter>Fichiers d%27en-tête\Game\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="table.h">
+      <Filter>Fichiers d%27en-tête\Game\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd.h">
+      <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic.h">
+      <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

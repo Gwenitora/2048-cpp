@@ -134,6 +134,14 @@
     <ClCompile Include="graphic.cpp" />
     <ClCompile Include="table.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2048.h" />
+    <ClInclude Include="cell.h" />
+    <ClInclude Include="cmd.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="graphic.h" />
+    <ClInclude Include="table.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
