@@ -13,10 +13,34 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\Game">
+      <UniqueIdentifier>{4cf87b35-77b9-48c4-8734-d08bd87db7e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game\Table">
+      <UniqueIdentifier>{e7b6df3b-01bf-4290-b774-a5933028fcb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game\Graphic">
+      <UniqueIdentifier>{f5a10c13-fd1f-408d-ba2e-fa34ba2f12d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Fichiers sources\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="table.cpp">
+      <Filter>Fichiers sources\Game\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="cell.cpp">
+      <Filter>Fichiers sources\Game\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic.cpp">
+      <Filter>Fichiers sources\Game\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd.cpp">
+      <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
