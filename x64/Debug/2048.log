@@ -1,8 +1,5 @@
-﻿  cell.cpp
-  game.cpp
-  table.cpp
+﻿  table.cpp
 C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(2,1): error C2011: 'Cell' : redéfinition du type 'class'
 C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(1,7): message : voir la déclaration de 'Cell'
 C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(25,23): error C2027: utilisation du type non défini 'Cell'
 C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(1,7): message : voir la déclaration de 'Cell'
-  Génération de code en cours...
