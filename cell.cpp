@@ -1,16 +1,12 @@
 #include "cell.h"
 
-class Cell
+
+Cell::Cell(int value)
 {
-	int _value;
+	_value = value;
+};
 
-	Cell(int value)
-	{
-		_value = value;
-	};
-
-	int getValue()
-	{
-		return _value;
-	};
+int Cell::getValue()
+{
+	return _value;
 };

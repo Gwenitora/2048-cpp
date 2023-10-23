@@ -11,4 +11,6 @@ class Table
 
 public:
 	Table(int sizeX, int sizeY);
+public:
+	int operator<<(int i);
 };
