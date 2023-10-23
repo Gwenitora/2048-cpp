@@ -4,6 +4,5 @@ class Cell
 
 public:
 	Cell(int value);
-public:
 	int getValue();
 };
