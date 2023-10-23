@@ -1,3 +1,4 @@
+#pragma once
 #include "cell.h"
 #include <iostream>
 #include <vector>
@@ -11,6 +12,6 @@ class Table
 
 public:
 	Table(int sizeX, int sizeY);
-public:
-	int operator<<(int i);
+	Table();
+	void ShowGrid();
 };

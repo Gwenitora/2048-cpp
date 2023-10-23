@@ -2,9 +2,11 @@
 
 class Cell
 {
+public:
 	int _value;
 
-public:
+	Cell();
 	Cell(int value);
+
 	int getValue();
 };

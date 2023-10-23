@@ -1,11 +1,8 @@
 #include "table.h"
+#include "game.h"
+using namespace std;
 
-class Game
+Game::Game()
 {
-	Table* _table;
-
-	Game()
-	{
-		_table = new Table(4, 4);
-	};
-};
+	_table.ShowGrid();
+}
