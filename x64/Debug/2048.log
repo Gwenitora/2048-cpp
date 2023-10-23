@@ -1,5 +1,30 @@
-﻿  table.cpp
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(2,1): error C2011: 'Cell' : redéfinition du type 'class'
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(1,7): message : voir la déclaration de 'Cell'
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(25,23): error C2027: utilisation du type non défini 'Cell'
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(1,7): message : voir la déclaration de 'Cell'
+﻿  2048.cpp
+  cell.cpp
+  cmd.cpp
+  game.cpp
+  graphic.cpp
+  table.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xmemory(719,82): error C2512: 'Cell::Cell' : aucun constructeur par défaut approprié disponible
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xmemory(719,82): message : lors de la tentative de mise en correspondance de la liste des arguments '()'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xmemory(1802,35): message : voir la référence à l'instanciation de la fonction modèle 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,>(_Alloc &,_Objty *const )' en cours de compilation
+          with
+          [
+              _Alloc=std::allocator<Cell>,
+              _Ty=Cell,
+              _Objty=Cell
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xmemory(2042,17): message : voir la référence à l'instanciation de la fonction modèle 'void std::_Uninitialized_backout_al<std::allocator<Cell>>::_Emplace_back<>(void)' en cours de compilation
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\vector(1580,27): message : voir la référence à l'instanciation de la fonction modèle 'Cell *std::_Uninitialized_value_construct_n<std::allocator<Cell>>(Cell *,unsigned __int64,_Alloc &)' en cours de compilation
+          with
+          [
+              _Alloc=std::allocator<Cell>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\vector(1592,9): message : voir la référence à l'instanciation de la fonction modèle 'void std::vector<Cell,std::allocator<Cell>>::_Resize<std::_Value_init_tag>(const unsigned __int64,const _Ty2 &)' en cours de compilation
+          with
+          [
+              _Ty2=std::_Value_init_tag
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\vector(1590,23): message : pendant la compilation de la fonction membre classe modèle 'void std::vector<Cell,std::allocator<Cell>>::resize(const unsigned __int64)'
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(15,19): message : voir la première référence à « std::vector<Cell,std::allocator<Cell>>::resize » dans « Table::Table »
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(15,11): message : voir la référence à l'instanciation classe modèle 'std::vector<Cell,std::allocator<Cell>>' en cours de compilation
+  Génération de code en cours...
