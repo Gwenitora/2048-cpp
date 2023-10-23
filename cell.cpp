@@ -8,4 +8,9 @@ class Cell
 	{
 		_value = value;
 	};
+
+	int getValue()
+	{
+		return _value;
+	};
 };

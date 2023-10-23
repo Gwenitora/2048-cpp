@@ -1,9 +1,11 @@
-﻿  2048.cpp
-  cell.cpp
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.cpp(1,10): fatal  error C1083: Impossible d'ouvrir le fichier include : 'cell.h' : No such file or directory
+﻿  cell.cpp
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.cpp(4,1): error C2011: 'Cell' : redéfinition du type 'class'
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(1,7): message : voir la déclaration de 'Cell'
   cmd.cpp
   game.cpp
-  graphic.cpp
   table.cpp
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(1,10): fatal  error C1083: Impossible d'ouvrir le fichier include : 'cell.h' : No such file or directory
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(2,1): error C2011: 'Cell' : redéfinition du type 'class'
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\cell.h(1,7): message : voir la déclaration de 'Cell'
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(8,1): error C2011: 'Table' : redéfinition du type 'class'
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.h(6,7): message : voir la déclaration de 'Table'
   Génération de code en cours...
