@@ -46,6 +46,7 @@ Table::Table() : Table( 4, 4 )
 
 void Table::ShowGrid()
 {
+	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	system("CLS");
 	cout << endl;
 	for (int j = 0; j < _sizeY; j++)
