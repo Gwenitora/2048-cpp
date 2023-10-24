@@ -132,39 +132,33 @@ void Table::fusionToLeft()
 	}
 }
 
-void Table::gripToUp()
+void Table::actionLeft()
 {
-	RotateGrid(1);
 	gripToLeft();
-	RotateGrid(3);
-}
-void Table::fusionToUp()
-{
-	RotateGrid(1);
 	fusionToLeft();
-	RotateGrid(3);
+	gripToLeft();
 }
-void Table::gripToRight()
+void Table::actionRight()
 {
 	RotateGrid(2);
 	gripToLeft();
-	RotateGrid(2);
-}
-void Table::fusionToRight()
-{
-	RotateGrid(2);
 	fusionToLeft();
+	gripToLeft();
 	RotateGrid(2);
 }
-void Table::gripToDown()
+void Table::actionUp()
+{
+	RotateGrid(1);
+	gripToLeft();
+	fusionToLeft();
+	gripToLeft();
+	RotateGrid(3);
+}
+void Table::actionDown()
 {
 	RotateGrid(3);
 	gripToLeft();
-	RotateGrid(1);
-}
-void Table::fusionToDown()
-{
-	RotateGrid(3);
 	fusionToLeft();
+	gripToLeft();
 	RotateGrid(1);
 }

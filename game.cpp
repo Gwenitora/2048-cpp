@@ -23,24 +23,16 @@ Game::Game()
 			switch ((c = _getch()))
 			{
 			case KEY_UP:
-				_table.gripToUp();
-				_table.fusionToUp();
-				_table.gripToUp();
+				_table.actionUp();
 				break;
 			case KEY_DOWN:
-				_table.gripToDown();
-				_table.fusionToDown();
-				_table.gripToDown();
+				_table.actionDown();
 				break;
 			case KEY_RIGHT:
-				_table.gripToRight();
-				_table.fusionToRight();
-				_table.gripToRight();
+				_table.actionRight();
 				break;
 			case KEY_LEFT:
-				_table.gripToLeft();
-				_table.fusionToLeft();
-				_table.gripToLeft();
+				_table.actionLeft();
 				break;
 			default:
 				badKey = true;

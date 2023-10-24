@@ -21,10 +21,9 @@ public:
 
 	void gripToLeft();
 	void fusionToLeft();
-	void gripToUp();
-	void fusionToUp();
-	void gripToRight();
-	void fusionToRight();
-	void gripToDown();
-	void fusionToDown();
+
+	void actionLeft();
+	void actionRight();
+	void actionUp();
+	void actionDown();
 };
