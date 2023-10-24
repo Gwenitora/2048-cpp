@@ -54,6 +54,7 @@ Table::Table() : Table( 4, 4 )
 
 void Table::ShowGrid()
 {
+	system("CLS");
 	for (int j = 0; j < _sizeY; j++)
 	{
 		for (int i = 0; i < _sizeX; i++)
