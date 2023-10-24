@@ -98,7 +98,7 @@ void Table::RotateGrid(int repeat)
 	_Cells = actual._Cells;
 }
 
-void Table::gripToLeft()
+void Table::grip()
 {
 	for (int j = 0; j < _sizeY; j++)
 	{
@@ -117,7 +117,7 @@ void Table::gripToLeft()
 		}
 	}
 }
-void Table::fusionToLeft()
+void Table::fusion()
 {
 	for (int j = 0; j < _sizeY; j++)
 	{
@@ -134,31 +134,31 @@ void Table::fusionToLeft()
 
 void Table::actionLeft()
 {
-	gripToLeft();
-	fusionToLeft();
-	gripToLeft();
+	grip();
+	fusion();
+	grip();
 }
 void Table::actionRight()
 {
 	RotateGrid(2);
-	gripToLeft();
-	fusionToLeft();
-	gripToLeft();
+	grip();
+	fusion();
+	grip();
 	RotateGrid(2);
 }
 void Table::actionUp()
 {
 	RotateGrid(1);
-	gripToLeft();
-	fusionToLeft();
-	gripToLeft();
+	grip();
+	fusion();
+	grip();
 	RotateGrid(3);
 }
 void Table::actionDown()
 {
 	RotateGrid(3);
-	gripToLeft();
-	fusionToLeft();
-	gripToLeft();
+	grip();
+	fusion();
+	grip();
 	RotateGrid(1);
 }

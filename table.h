@@ -19,8 +19,8 @@ public:
 	void ShowGrid();
 	void RotateGrid(int repeat);
 
-	void gripToLeft();
-	void fusionToLeft();
+	void grip();
+	void fusion();
 
 	void actionLeft();
 	void actionRight();
