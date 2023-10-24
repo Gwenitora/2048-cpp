@@ -20,16 +20,27 @@ Game::Game()
 		{
 			badKey = false;
 			c = 0;
-			cout << _getch();
 			switch ((c = _getch()))
 			{
 			case KEY_UP:
+				_table.gripToUp();
+				_table.fusionToUp();
+				_table.gripToUp();
 				break;
 			case KEY_DOWN:
+				_table.gripToDown();
+				_table.fusionToDown();
+				_table.gripToDown();
 				break;
 			case KEY_RIGHT:
+				_table.gripToRight();
+				_table.fusionToRight();
+				_table.gripToRight();
 				break;
 			case KEY_LEFT:
+				_table.gripToLeft();
+				_table.fusionToLeft();
+				_table.gripToLeft();
 				break;
 			default:
 				badKey = true;

@@ -35,15 +35,7 @@ Table::Table(int sizeX, int sizeY)
 
 		int xcoord = index / _sizeX;
 		int ycoord = index % _sizeY;
-		int is4 = rand() % 10 + 1;
-		if(is4<9)
-		{
-			_Cells[xcoord][ycoord]._value = 2;
-		}
-		else {
-			_Cells[xcoord][ycoord]._value = 4;
-		}
-
+		_Cells[xcoord][ycoord].genereNew();
 	}
 }
 
@@ -55,6 +47,7 @@ Table::Table() : Table( 4, 4 )
 void Table::ShowGrid()
 {
 	system("CLS");
+	cout << endl;
 	for (int j = 0; j < _sizeY; j++)
 	{
 		for (int i = 0; i < _sizeX; i++)
@@ -67,4 +60,111 @@ void Table::ShowGrid()
 		}
 		cout << endl;
 	}
+}
+
+void Table::setCell(int x, int y, Cell cell)
+{
+	_Cells[y][x] = cell;
+}
+
+void Table::setCells(vector<vector<Cell>> cells)
+{
+	_Cells = cells;
+}
+
+Cell Table::getCell(int x, int y)
+{
+	return _Cells[y][x];
+}
+
+void Table::RotateGrid(int repeat)
+{
+	Table actual = Table(_sizeX, _sizeY);
+	actual.setCells(_Cells);
+	for (int k = 0; k < repeat; k++)
+	{
+		Table otherTable = Table(actual._sizeY, actual._sizeX);
+		for (int j = 0; j < actual._sizeY; j++)
+		{
+			for (int i = 0; i < actual._sizeX; i++)
+			{
+				otherTable.setCell(j, actual._sizeY -1 -i, actual.getCell(i, j));
+			}
+		}
+		actual = otherTable;
+	}
+	_sizeX = actual._sizeX;
+	_sizeY = actual._sizeY;
+	_Cells = actual._Cells;
+}
+
+void Table::gripToLeft()
+{
+	for (int j = 0; j < _sizeY; j++)
+	{
+		int offset = 0;
+		for (int i = 0; i < _sizeX; i++)
+		{
+			if (getCell(i, j).getValue() == 0)
+			{
+				offset++;
+			}
+			else if (offset != 0)
+			{
+				setCell(i - offset, j, getCell(i, j));
+				_Cells[j][i].reset();
+			}
+		}
+	}
+}
+void Table::fusionToLeft()
+{
+	for (int j = 0; j < _sizeY; j++)
+	{
+		for (int i = 1; i < _sizeX ; i++)
+		{
+			if (_Cells[j][i - 1].getValue() == _Cells[j][i].getValue())
+			{
+				_Cells[j][i - 1].doubl();
+				_Cells[j][i].reset();
+			}
+		}
+	}
+}
+
+void Table::gripToUp()
+{
+	RotateGrid(1);
+	gripToLeft();
+	RotateGrid(3);
+}
+void Table::fusionToUp()
+{
+	RotateGrid(1);
+	fusionToLeft();
+	RotateGrid(3);
+}
+void Table::gripToRight()
+{
+	RotateGrid(2);
+	gripToLeft();
+	RotateGrid(2);
+}
+void Table::fusionToRight()
+{
+	RotateGrid(2);
+	fusionToLeft();
+	RotateGrid(2);
+}
+void Table::gripToDown()
+{
+	RotateGrid(3);
+	gripToLeft();
+	RotateGrid(1);
+}
+void Table::fusionToDown()
+{
+	RotateGrid(3);
+	fusionToLeft();
+	RotateGrid(1);
 }
