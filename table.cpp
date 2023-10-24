@@ -47,19 +47,20 @@ Table::Table() : Table( 4, 4 )
 void Table::ShowGrid()
 {
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
+	string preString = "0";
 	system("CLS");
 	cout << endl;
 	for (int j = 0; j < _sizeY; j++)
 	{
+		cout << endl << " | ";
 		for (int i = 0; i < _sizeX; i++)
 		{
-			cout << _Cells[j][i].getValue();
-			if (i != _sizeX - 1)
+			for (int k = 0; k < (maxSize - (_Cells[j][i].getValue() == 0 ? 1 : log10(_Cells[j][i].getValue()) +1)); k++)
 			{
-				cout << " | ";
+				cout << preString;
 			}
+			cout << _Cells[j][i].getValue() << " | ";
 		}
-		cout << endl;
 	}
 }
 
