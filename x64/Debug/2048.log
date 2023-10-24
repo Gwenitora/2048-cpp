@@ -1,7 +1,6 @@
 ﻿  2048.cpp
-  cell.cpp
   game.cpp
   table.cpp
-C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(13,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+C:\Users\chopp\source\repos\2048-cpp\table.cpp(29,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
   Génération de code en cours...
-  2048.vcxproj -> C:\Users\gacquart-reylans\Documents\repos\2048-cpp\x64\Debug\2048.exe
+  2048.vcxproj -> C:\Users\chopp\source\repos\2048-cpp\x64\Debug\2048.exe

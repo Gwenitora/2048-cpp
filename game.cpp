@@ -12,7 +12,7 @@ Game::Game()
 {
 	bool badKey = true;
 	int c = 0;
-	while (true)
+	while (_table._inGame)
 	{
 		_table.ShowGrid();
 		badKey = true;
