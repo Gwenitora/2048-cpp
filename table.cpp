@@ -22,7 +22,7 @@ Table::Table(int sizeX, int sizeY)
 	NextTurn();
 }
 
-Table::Table() : Table( 2, 4 )
+Table::Table() : Table( 4, 2 )
 {
 }
 
@@ -58,8 +58,9 @@ void Table::Gen(int number ,vector<int> list)
 		//_Cells[xcoord][ycoord].genereNew();
 		int randomNumber = rand() % (listSize);
 		int index = list[randomNumber];
-		int xcoord = index / _sizeX;
-		int ycoord = index % _sizeY;
+		int xcoord = index % _sizeX;
+		int ycoord = index / _sizeX;
+		cout << xcoord << " " << ycoord << endl;
 		_Cells[ycoord][xcoord].genereNew();
 		for (int j = randomNumber; j < listSize - 1; j++)
 		{
@@ -75,7 +76,7 @@ vector<int> Table::getEmptyCells(vector<vector<Cell>> table)
 	for (int i = 0; i < _sizeY;i++) {
 		for (int j = 0; j < _sizeX; j++) {
 			if (table[i][j].getValue() == 0) {
-				list.push_back((i * _sizeY) + j);
+				list.push_back((i * _sizeX) + j);
 			}
 		}
 	}
@@ -213,12 +214,12 @@ void Table::RotateGrid(int repeat)
 	actual.setCells(_Cells);
 	for (int k = 0; k < repeat; k++)
 	{
-		Table otherTable = Table(actual._sizeY, actual._sizeX);
+		Table otherTable = Table(actual._sizeY, actual._sizeX); 
 		for (int j = 0; j < actual._sizeY; j++)
 		{
 			for (int i = 0; i < actual._sizeX; i++)
 			{
-				otherTable.setCell(j, actual._sizeY -1 -i, actual.getCell(i, j));
+				otherTable.setCell(j, i, actual.getCell(i, actual._sizeY - 1 - j));
 			}
 		}
 		actual = otherTable;
@@ -290,11 +291,11 @@ void Table::actionRight()
 }
 void Table::actionUp()
 {
-	RotateGrid(1);
+	RotateGrid(3);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(3);
+	RotateGrid(1);
 	if (_played)
 	{
 		NextTurn();
@@ -302,11 +303,11 @@ void Table::actionUp()
 }
 void Table::actionDown()
 {
-	RotateGrid(3);
+	RotateGrid(1);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(1);
+	RotateGrid(3);
 	if (_played)
 	{
 		NextTurn();
