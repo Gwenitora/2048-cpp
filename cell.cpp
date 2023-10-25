@@ -28,7 +28,7 @@ void Cell::reset()
 void Cell::genereNew()
 {
     int is4 = rand() % 10 + 1;
-    if (is4 < 9)
+    if (is4 < 10)
     {
         _value = 2;
     }
