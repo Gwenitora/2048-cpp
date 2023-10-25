@@ -12,6 +12,7 @@ Table::Table(int sizeX, int sizeY)
 	_sizeY = sizeY;
 	_lengthAllCoords = _sizeY * _sizeX;
 	_inGame = 1;
+	_Cells.resize(0);
 	_Cells.resize(_sizeY);
 	for (int j = 0; j < _sizeY; j++)
 	{
@@ -24,9 +25,20 @@ Table::Table() : Table( 4, 4 )
 {
 }
 
+void Table::Regen()
+{
+	for (int j = 0; j < _sizeY; j++)
+	{
+		for (int i = 0; i < _sizeX; i++)
+		{
+			_Cells[j][i].reset();
+		}
+	}
+	NextTurn();
+}
+
 void Table::Gen(int number ,vector<int> list) 
 {
-	srand(time(NULL));
 	int listSize = list.size();
 	//vector<int>coords(lengthAllCoords, 0);
 	for (int k = 0; k < number; k++) {
@@ -43,16 +55,18 @@ void Table::Gen(int number ,vector<int> list)
 		//int xcoord = index / _sizeX;
 		//int ycoord = index % _sizeY;
 		//_Cells[xcoord][ycoord].genereNew();
-		int randomNumber = rand() % (list.size());
+		int randomNumber = rand() % (listSize);
 		int index = list[randomNumber];
 		int xcoord = index / _sizeX;
 		int ycoord = index % _sizeY;
 		_Cells[xcoord][ycoord].genereNew();
-		for (int j = randomNumber; j < list.size() - 1; ++j)
+		for (int j = randomNumber; j < listSize - 1; j++)
 		{
 			list[j] = list[j + 1];
 		}
 		listSize--;
+		list[listSize] = -1;
+		cout << "ListSize: " << listSize << endl;
 	}
 	for (int i = 0; i < list.size(); i++) {
 		cout << list[i]<<" ";
@@ -113,6 +127,7 @@ int Table::gameOver() {
 
 void Table::ShowGrid()
 {
+	//system("CLS");
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
@@ -130,7 +145,6 @@ void Table::ShowGrid()
 		}
 		horizontalEmptySeperation += verticalSeperation;
 	}
-	system("CLS");
 	for (int j = 0; j < _sizeY; j++)
 	{
 		cout << endl << horizontalSeperation;

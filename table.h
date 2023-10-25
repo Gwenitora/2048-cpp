@@ -6,12 +6,13 @@ using namespace std;
 class Game;
 class Table
 {
-	vector<vector<Cell>> _Cells;
 	int _sizeX;
 	int _sizeY;
 	int _lengthAllCoords;
 
 public:
+	vector<vector<Cell>> _Cells;
+	void Regen();
 	int _inGame;
 	Table(int sizeX, int sizeY);
 	Table();
