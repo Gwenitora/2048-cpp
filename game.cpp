@@ -1,6 +1,7 @@
 #include <conio.h>
 #include "table.h"
 #include "game.h"
+#include <Windows.h>
 using namespace std;
 
 #define KEY_UP 72
@@ -10,33 +11,51 @@ using namespace std;
 
 Game::Game()
 {
-	bool badKey = true;
-	int c = 0;
+	int KeyDowned = 0;
+	_table.ShowGrid();
 	while (_table._inGame)
 	{
-		_table.ShowGrid();
-		badKey = true;
-		while (badKey)
+		while (!KeyDowned)
 		{
-			badKey = false;
-			c = 0;
-			switch ((c = _getch()))
+			if (GetKeyState(VK_UP) == -127 || GetKeyState(VK_UP) == -128)
 			{
-			case KEY_UP:
 				_table.actionUp();
-				break;
-			case KEY_DOWN:
+				KeyDowned = 1;
+			}
+			else if (GetKeyState(VK_DOWN) == -127 || GetKeyState(VK_DOWN) == -128)
+			{
 				_table.actionDown();
-				break;
-			case KEY_RIGHT:
-				_table.actionRight();
-				break;
-			case KEY_LEFT:
+				KeyDowned = 2;
+			}
+			else if (GetKeyState(VK_LEFT) == -127 || GetKeyState(VK_LEFT) == -128)
+			{
 				_table.actionLeft();
-				break;
-			default:
-				badKey = true;
-				break;
+				KeyDowned = 3;
+			}
+			else if (GetKeyState(VK_RIGHT) == -127 || GetKeyState(VK_RIGHT) == -128)
+			{
+				_table.actionRight();
+				KeyDowned = 4;
+			}
+		}
+		_table.ShowGrid();
+		while (KeyDowned)
+		{
+			if ((GetKeyState(VK_UP) == 0 || GetKeyState(VK_UP) == 1) && KeyDowned == 1)
+			{
+				KeyDowned = 0;
+			}
+			else if ((GetKeyState(VK_DOWN) == 0 || GetKeyState(VK_DOWN) == 1) && KeyDowned == 2)
+			{
+				KeyDowned = 0;
+			}
+			else if ((GetKeyState(VK_LEFT) == 0 || GetKeyState(VK_LEFT) == 1) && KeyDowned == 3)
+			{
+				KeyDowned = 0;
+			}
+			else if ((GetKeyState(VK_RIGHT) == 0 || GetKeyState(VK_RIGHT) == 1) && KeyDowned == 4)
+			{
+				KeyDowned = 0;
 			}
 		}
 	}
