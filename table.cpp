@@ -123,7 +123,7 @@ int Table::gameOver() {
 
 void Table::ShowGrid()
 {
-	//system("CLS");
+	system("CLS");
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
