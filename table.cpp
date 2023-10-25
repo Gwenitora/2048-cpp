@@ -10,43 +10,101 @@ Table::Table(int sizeX, int sizeY)
 {
 	_sizeX = sizeX;
 	_sizeY = sizeY;
-	srand(time(NULL));
-	int lengthAllCoords = _sizeY * _sizeX;
-	vector<int>coords(lengthAllCoords,0);
-	for (int l = 0; l < lengthAllCoords; l++)
-	{
-		coords[l] = l;
-	}
+	_lengthAllCoords = _sizeY * _sizeX;
+	_inGame = 1;
 	_Cells.resize(_sizeY);
 	for (int j = 0; j < _sizeY; j++)
 	{
 		_Cells[j].resize(_sizeX);
 	}
-	for (int k = 0; k < 2; k++) {
-		int randomNumber = rand() % (_sizeX * _sizeY);
-		//cout << randomNumber << endl;
-		int index = coords[randomNumber];
-		for (int j = randomNumber; j < lengthAllCoords - 1; ++j)
-		{
-			coords[j] = coords[j + 1];
-		}
-
-		lengthAllCoords--;
-
-		int xcoord = index / _sizeX;
-		int ycoord = index % _sizeY;
-		_Cells[xcoord][ycoord].genereNew();
-	}
+	NextTurn();
 }
 
 Table::Table() : Table( 4, 4 )
 {
 }
 
+void Table::Gen(int number ,vector<int> list) 
+{
+	srand(time(NULL));
+	//vector<int>coords(lengthAllCoords, 0);
+	for (int k = 0; k < number; k++) {
+		//int randomNumber = rand() % (_sizeX * _sizeY);
+		////cout << randomNumber << endl;
+		//int index = coords[randomNumber];
+		//for (int j = randomNumber; j < lengthAllCoords - 1; ++j)
+		//{
+		//	coords[j] = coords[j + 1];
+		//}
+
+		//lengthAllCoords--;
+
+		//int xcoord = index / _sizeX;
+		//int ycoord = index % _sizeY;
+		//_Cells[xcoord][ycoord].genereNew();
+		int randomNumber = rand() % (list.size());
+		int index = list[randomNumber];
+		int xcoord = index / _sizeX;
+		int ycoord = index % _sizeY;
+		_Cells[xcoord][ycoord].genereNew();
+	}
+}
+
+vector<int> Table::getEmptyCells(vector<vector<Cell>> table)
+{
+	vector<int> list;
+	for (int i = 0; i < _sizeY;i++) {
+		for (int j = 0; j < _sizeX; j++) {
+			if (table[i][j].getValue() == 0) {
+				list.push_back((i * 4) + j);
+			}
+		}
+	}
+	return list;
+}
+
+void Table::NextTurn() {
+	vector<int> EmptyCells = getEmptyCells(_Cells);
+	int isTheGameOver = gameOver();
+	//for (int i = 0; i < EmptyCells.size(); i++)
+	//{
+	//	cout << EmptyCells[i];
+	//}
+	if (isTheGameOver) {
+		_inGame = 0;
+	}
+	else
+	{
+		if (_lengthAllCoords == EmptyCells.size()) {
+			Gen(2, EmptyCells);
+		}
+		else {
+			Gen(1, EmptyCells);
+		}
+	}
+}
+
+int Table::gameOver() {
+	vector<int> EmptyCells = getEmptyCells(_Cells);
+	if (EmptyCells.size() == 0)
+	{
+		return 1;
+	}
+	for (int i = 0; i < _sizeY; i++)
+	{
+		for (int j = 0; j < _sizeX; j++)
+		{
+			if (_Cells[i][j].getValue() == 2048) {
+				return 2;
+			}
+		}
+	}
+	return 0;
+}
 
 void Table::ShowGrid()
 {
-	system("CLS");
+	//system("CLS");
 	cout << endl;
 	for (int j = 0; j < _sizeY; j++)
 	{
@@ -137,6 +195,7 @@ void Table::actionLeft()
 	grip();
 	fusion();
 	grip();
+	NextTurn();
 }
 void Table::actionRight()
 {
@@ -145,6 +204,7 @@ void Table::actionRight()
 	fusion();
 	grip();
 	RotateGrid(2);
+	NextTurn();
 }
 void Table::actionUp()
 {
@@ -153,6 +213,7 @@ void Table::actionUp()
 	fusion();
 	grip();
 	RotateGrid(3);
+	NextTurn();
 }
 void Table::actionDown()
 {
@@ -161,4 +222,5 @@ void Table::actionDown()
 	fusion();
 	grip();
 	RotateGrid(1);
+	NextTurn();
 }
