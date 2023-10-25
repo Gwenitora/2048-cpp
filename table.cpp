@@ -27,6 +27,7 @@ Table::Table() : Table( 4, 4 )
 void Table::Gen(int number ,vector<int> list) 
 {
 	srand(time(NULL));
+	int listSize = list.size();
 	//vector<int>coords(lengthAllCoords, 0);
 	for (int k = 0; k < number; k++) {
 		//int randomNumber = rand() % (_sizeX * _sizeY);
@@ -47,6 +48,14 @@ void Table::Gen(int number ,vector<int> list)
 		int xcoord = index / _sizeX;
 		int ycoord = index % _sizeY;
 		_Cells[xcoord][ycoord].genereNew();
+		for (int j = randomNumber; j < list.size() - 1; ++j)
+		{
+			list[j] = list[j + 1];
+		}
+		listSize--;
+	}
+	for (int i = 0; i < list.size(); i++) {
+		cout << list[i]<<" ";
 	}
 }
 
@@ -122,7 +131,6 @@ void Table::ShowGrid()
 		horizontalEmptySeperation += verticalSeperation;
 	}
 	system("CLS");
-	cout << endl;
 	for (int j = 0; j < _sizeY; j++)
 	{
 		cout << endl << horizontalSeperation;
