@@ -9,6 +9,7 @@ class Table
 	int _sizeX;
 	int _sizeY;
 	int _lengthAllCoords;
+	int _played;
 
 public:
 	vector<vector<Cell>> _Cells;
@@ -31,4 +32,5 @@ public:
 	void actionRight();
 	void actionUp();
 	void actionDown();
+	Table createCopy();
 };
