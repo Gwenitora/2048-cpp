@@ -10,6 +10,7 @@ class Table
 	int _sizeX;
 	int _sizeY;
 	int _lengthAllCoords;
+	int _played;
 
 public:
 	int _inGame;
@@ -30,4 +31,5 @@ public:
 	void actionRight();
 	void actionUp();
 	void actionDown();
+	Table createCopy();
 };
