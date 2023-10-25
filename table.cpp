@@ -66,10 +66,6 @@ void Table::Gen(int number ,vector<int> list)
 		}
 		listSize--;
 		list[listSize] = -1;
-		cout << "ListSize: " << listSize << endl;
-	}
-	for (int i = 0; i < list.size(); i++) {
-		cout << list[i]<<" ";
 	}
 }
 
