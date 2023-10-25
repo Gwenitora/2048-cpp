@@ -31,6 +31,9 @@
     <Filter Include="Fichiers d%27en-tête\Game\Table">
       <UniqueIdentifier>{2e59f0a1-d521-4b0c-8667-f22bd3316242}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Utils">
+      <UniqueIdentifier>{79fd1fd8-b883-48b4-a0a5-a52fb09153a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp">

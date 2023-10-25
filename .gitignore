@@ -32,19 +32,4 @@
 *.app
 
 *.vs
-/x64/Debug/2048.exe.recipe
-/x64/Debug/2048.ilk
-/x64/Debug/2048.log
-/x64/Debug/2048.pdb
-/x64/Debug/2048.tlog/2048.lastbuildstate
-/x64/Debug/2048.tlog/CL.command.1.tlog
-/x64/Debug/2048.tlog/Cl.items.tlog
-/x64/Debug/2048.tlog/CL.read.1.tlog
-/x64/Debug/2048.tlog/CL.write.1.tlog
-/x64/Debug/2048.tlog/link.command.1.tlog
-/x64/Debug/2048.tlog/link.read.1.tlog
-/x64/Debug/2048.tlog/link.write.1.tlog
-/x64/Debug/vc143.idb
-/x64/Debug/vc143.pdb
-/.gitignore
-/.gitignore
+*x64
