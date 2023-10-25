@@ -33,6 +33,6 @@ void Cell::genereNew()
         _value = 2;
     }
     else {
-        _value = 16;
+        _value = 4;
     }
 }
