@@ -22,7 +22,7 @@ Table::Table(int sizeX, int sizeY)
 	NextTurn();
 }
 
-Table::Table() : Table( 4, 4 )
+Table::Table() : Table( 2, 4 )
 {
 }
 
@@ -60,7 +60,7 @@ void Table::Gen(int number ,vector<int> list)
 		int index = list[randomNumber];
 		int xcoord = index / _sizeX;
 		int ycoord = index % _sizeY;
-		_Cells[xcoord][ycoord].genereNew();
+		_Cells[ycoord][xcoord].genereNew();
 		for (int j = randomNumber; j < listSize - 1; j++)
 		{
 			list[j] = list[j + 1];
