@@ -104,20 +104,53 @@ int Table::gameOver() {
 
 void Table::ShowGrid()
 {
-	//system("CLS");
+	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
+	string preString = " ";
+	string verticalSeperation = " | ";
+	string horizontalSeperation = " ";
+	for (int i = 0; i < (maxSize + 4) * _sizeX + 1; i++)
+	{
+		horizontalSeperation += "-";
+	}
+	string horizontalEmptySeperation = verticalSeperation;
+	for (int i = 0; i < _sizeX; i++)
+	{
+		for (int i = 0; i < maxSize +1; i++)
+		{
+			horizontalEmptySeperation += preString;
+		}
+		horizontalEmptySeperation += verticalSeperation;
+	}
+	system("CLS");
 	cout << endl;
 	for (int j = 0; j < _sizeY; j++)
 	{
+		cout << endl << horizontalSeperation;
+		for (int k = 0; k < ((maxSize + .5f) / 2 - .5f) / 2; k++)
+		{
+			cout << endl << horizontalEmptySeperation;
+		}
+		cout << endl << verticalSeperation;
 		for (int i = 0; i < _sizeX; i++)
 		{
-			cout << _Cells[j][i].getValue();
-			if (i != _sizeX - 1)
+			int len = (maxSize - (_Cells[j][i].getValue() == 0 ? 1 : log10(_Cells[j][i].getValue())));
+			for (int k = 0; k < (len - .5f) /2; k++)
 			{
-				cout << " | ";
+				cout << preString;
 			}
+			cout << _Cells[j][i].getValue();
+			for (int k = 0; k < (len + .5f) / 2; k++)
+			{
+				cout << preString;
+			}
+			cout << verticalSeperation;
 		}
-		cout << endl;
+		for (int k = 0; k < ((maxSize + .5f) / 2 - .5f) / 2; k++)
+		{
+			cout << endl << horizontalEmptySeperation;
+		}
 	}
+	cout << endl << horizontalSeperation;
 }
 
 void Table::setCell(int x, int y, Cell cell)
