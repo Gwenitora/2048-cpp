@@ -68,7 +68,7 @@ void Table::ShowGrid()
 	for (int j = 0; j < _sizeY; j++)
 	{
 		cout << endl << horizontalSeperation;
-		for (int k = 0; k < (maxSize + .5f) / 2; k++)
+		for (int k = 0; k < ((maxSize + .5f) / 2 - .5f) / 2; k++)
 		{
 			cout << endl << horizontalEmptySeperation;
 		}
@@ -87,7 +87,7 @@ void Table::ShowGrid()
 			}
 			cout << verticalSeperation;
 		}
-		for (int k = 0; k < (maxSize - .5f) / 2; k++)
+		for (int k = 0; k < ((maxSize + .5f) / 2 - .5f) / 2; k++)
 		{
 			cout << endl << horizontalEmptySeperation;
 		}
