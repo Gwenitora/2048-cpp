@@ -6,15 +6,18 @@ using namespace std;
 class Game;
 class Table
 {
+public:
+	int _inGame;
+	vector<vector<Cell>> _Cells;
+
+private:
 	int _sizeX;
 	int _sizeY;
 	int _lengthAllCoords;
 	int _played;
 
 public:
-	vector<vector<Cell>> _Cells;
 	void Regen();
-	int _inGame;
 	Table(int sizeX, int sizeY);
 	Table();
 	void setCell(int x, int y, Cell cell);
@@ -27,7 +30,7 @@ public:
 	int gameOver();
 	void fusion();
 	vector<int> getEmptyCells(vector<vector<Cell>> table);
-	void NextTurn();
+	void nextTurn();
 	void actionLeft();
 	void actionRight();
 	void actionUp();

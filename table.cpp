@@ -19,7 +19,7 @@ Table::Table(int sizeX, int sizeY)
 		_Cells[j].resize(_sizeX);
 	}
 	//_tableCopy = _Cells;
-	NextTurn();
+	nextTurn();
 }
 
 Table::Table() : Table( 4, 4 )
@@ -35,7 +35,7 @@ void Table::Regen()
 			_Cells[j][i].reset();
 		}
 	}
-	NextTurn();
+	nextTurn();
 }
 
 void Table::Gen(int number ,vector<int> list) 
@@ -60,7 +60,6 @@ void Table::Gen(int number ,vector<int> list)
 		int index = list[randomNumber];
 		int xcoord = index % _sizeX;
 		int ycoord = index / _sizeX;
-		cout << xcoord << " " << ycoord << endl;
 		_Cells[ycoord][xcoord].genereNew();
 		for (int j = randomNumber; j < listSize - 1; j++)
 		{
@@ -83,7 +82,7 @@ vector<int> Table::getEmptyCells(vector<vector<Cell>> table)
 	return list;
 }
 
-void Table::NextTurn() {
+void Table::nextTurn() {
 	_played = 0;
 	vector<int> EmptyCells = getEmptyCells(_Cells);
 	//for (int i = 0; i < EmptyCells.size(); i++)
@@ -281,7 +280,7 @@ void Table::actionLeft()
 	grip();
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionRight()
@@ -293,7 +292,7 @@ void Table::actionRight()
 	RotateGrid(2);
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionUp()
@@ -305,7 +304,7 @@ void Table::actionUp()
 	RotateGrid(1);
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionDown()
@@ -317,6 +316,6 @@ void Table::actionDown()
 	RotateGrid(3);
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }

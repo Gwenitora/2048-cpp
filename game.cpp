@@ -2,6 +2,7 @@
 #include "table.h"
 #include "game.h"
 #include <Windows.h>
+#include <chrono>
 using namespace std;
 
 #define KEY_UP 72
@@ -13,10 +14,12 @@ Game::Game()
 {
 	int KeyDowned = 0;
 	_table.ShowGrid();
+	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
 	while (_table._inGame)
 	{
 		while (!KeyDowned)
 		{
+			timer = chrono::steady_clock::now();
 			if (GetKeyState(VK_UP) == -127 || GetKeyState(VK_UP) == -128)
 			{
 				_table.actionUp();
@@ -38,6 +41,7 @@ Game::Game()
 				KeyDowned = 4;
 			}
 		}
+		//cout << chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - timer).count() << endl;
 		_table.ShowGrid();
 		while (KeyDowned)
 		{

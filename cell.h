@@ -2,7 +2,6 @@
 
 class Cell
 {
-public:
 private:
 	int _value;
 
