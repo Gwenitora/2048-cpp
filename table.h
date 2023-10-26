@@ -10,6 +10,8 @@ class Table
 	int _sizeY;
 	int _lengthAllCoords;
 	int _played;
+	vector<Cell*> _list;
+	vector<vector<Cell>> _tableCopy;
 
 public:
 	vector<vector<Cell>> _Cells;
@@ -22,15 +24,15 @@ public:
 	Cell getCell(int x, int y);
 	void ShowGrid();
 	void RotateGrid(int repeat);
-	void Gen(int number, vector<int> list);
+	void Gen(int number);
 	void grip();
 	int gameOver();
 	void fusion();
-	vector<int> getEmptyCells(vector<vector<Cell>> table);
+	void getEmptyCells();
 	void NextTurn();
 	void actionLeft();
 	void actionRight();
 	void actionUp();
 	void actionDown();
-	Table createCopy();
+	//void createCopy();
 };
