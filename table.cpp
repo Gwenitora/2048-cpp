@@ -20,7 +20,7 @@ Table::Table(int sizeX, int sizeY)
 	}
 	_tableCopy = _Cells;
 	NextTurn();
-}
+
 
 Table::Table() : Table( 4, 4 )
 {
@@ -35,7 +35,7 @@ void Table::Regen()
 			_Cells[j][i].reset();
 		}
 	}
-	NextTurn();
+	nextTurn();
 }
 
 void Table::Gen(int number) 
@@ -78,7 +78,7 @@ void Table::getEmptyCells()
 	}
 }
 
-void Table::NextTurn() {
+void Table::nextTurn() {
 	_played = 0;
 	getEmptyCells();
 	//for (int i = 0; i < EmptyCells.size(); i++)
@@ -287,7 +287,7 @@ void Table::actionLeft()
 	grip();
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionRight()
@@ -299,7 +299,7 @@ void Table::actionRight()
 	RotateGrid(2);
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionUp()
@@ -311,7 +311,7 @@ void Table::actionUp()
 	RotateGrid(1);
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionDown()
@@ -323,6 +323,6 @@ void Table::actionDown()
 	RotateGrid(3);
 	if (_played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }

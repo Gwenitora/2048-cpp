@@ -6,6 +6,11 @@ using namespace std;
 class Game;
 class Table
 {
+public:
+	int _inGame;
+	vector<vector<Cell>> _Cells;
+
+private:
 	int _sizeX;
 	int _sizeY;
 	int _lengthAllCoords;
@@ -14,9 +19,7 @@ class Table
 	vector<vector<Cell>> _tableCopy;
 
 public:
-	vector<vector<Cell>> _Cells;
 	void Regen();
-	int _inGame;
 	Table(int sizeX, int sizeY);
 	Table();
 	void setCell(int x, int y, Cell cell);
