@@ -16,7 +16,6 @@ private:
 	int _lengthAllCoords;
 	int _played;
 	vector<Cell*> _list;
-	vector<vector<Cell>> _tableCopy;
 
 public:
 	void Regen();
