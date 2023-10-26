@@ -178,7 +178,14 @@ void Table::ShowGrid()
 			{
 				cout << preString;
 			}
-			cout << _Cells[j][i].getValue();
+			if (_Cells[j][i].getValue() == 0)
+			{
+				cout << " ";
+			}
+			else
+			{
+				cout << _Cells[j][i].getValue();
+			}
 			for (int k = 0; k < (len + .5f) / 2; k++)
 			{
 				cout << preString;
