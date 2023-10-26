@@ -18,9 +18,9 @@ Table::Table(int sizeX, int sizeY)
 	{
 		_Cells[j].resize(_sizeX);
 	}
-	//_tableCopy = _Cells;
-	nextTurn();
-}
+	_tableCopy = _Cells;
+	NextTurn();
+
 
 Table::Table() : Table( 4, 4 )
 {
@@ -38,9 +38,9 @@ void Table::Regen()
 	nextTurn();
 }
 
-void Table::Gen(int number ,vector<int> list) 
+void Table::Gen(int number) 
 {
-	int listSize = list.size();
+	int listSize = _list.size();
 	//vector<int>coords(lengthAllCoords, 0);
 	for (int k = 0; k < number; k++) {
 		//int randomNumber = rand() % (_sizeX * _sizeY);
@@ -57,67 +57,76 @@ void Table::Gen(int number ,vector<int> list)
 		//int ycoord = index % _sizeY;
 		//_Cells[xcoord][ycoord].genereNew();
 		int randomNumber = rand() % (listSize);
-		int index = list[randomNumber];
-		int xcoord = index % _sizeX;
-		int ycoord = index / _sizeX;
-		_Cells[ycoord][xcoord].genereNew();
+		_list[randomNumber]->genereNew();
 		for (int j = randomNumber; j < listSize - 1; j++)
 		{
-			list[j] = list[j + 1];
+			_list[j] = _list[j + 1];
 		}
 		listSize--;
 	}
 }
 
-vector<int> Table::getEmptyCells(vector<vector<Cell>> table)
+void Table::getEmptyCells()
 {
-	vector<int> list;
+	_list.clear();
 	for (int i = 0; i < _sizeY;i++) {
 		for (int j = 0; j < _sizeX; j++) {
-			if (table[i][j].getValue() == 0) {
-				list.push_back((i * _sizeX) + j);
+			if (_Cells[i][j].getValue() == 0) {
+				_list.push_back(&_Cells[i][j]);
 			}
 		}
 	}
-	return list;
 }
 
 void Table::nextTurn() {
 	_played = 0;
-	vector<int> EmptyCells = getEmptyCells(_Cells);
+	getEmptyCells();
 	//for (int i = 0; i < EmptyCells.size(); i++)
 	//{
 	//	cout << EmptyCells[i];
 	//}
-	if (_lengthAllCoords == EmptyCells.size()) {
-		Gen(2, EmptyCells);
+	if (_lengthAllCoords == _list.size()) {
+		Gen(2);
 	}
 	else {
-		Gen(1, EmptyCells);
+		Gen(1);
 	}
 	int isTheGameOver = gameOver();
 	if (isTheGameOver) {
 		_inGame = 0;
 	}
+	_played = 0;
 }
 
 int Table::gameOver() {
-	vector<int> EmptyCells = getEmptyCells(_Cells);
-	if (EmptyCells.size() == 0)
+	getEmptyCells();
+	_played = 0;
+	if (_list.size() == 0)
 	{
-		Table tableCopy = createCopy();
-		tableCopy._played = 0;
-		tableCopy.fusion();
-		tableCopy.RotateGrid(2);
-		tableCopy.fusion();
-		tableCopy.RotateGrid(2);
-		tableCopy.RotateGrid(1);
-		tableCopy.fusion();
-		tableCopy.RotateGrid(3);
-		tableCopy.RotateGrid(3);
-		tableCopy.fusion();
-		tableCopy.RotateGrid(1);
-		if(!tableCopy._played)
+		for (int j = 0; j < _sizeY - 1; j++)
+		{
+			for (int i = 0; i < _sizeX; i++)
+			{
+				if (i != _sizeX - 1)
+				{
+					if (_Cells[j][i].getValue() == _Cells[j][i + 1].getValue())
+					{
+						_played = 1;
+					}
+					if (_Cells[j][i].getValue() == _Cells[j + 1][i].getValue())
+					{
+						_played = 1;
+					}
+				}else
+				{
+					if (_Cells[j][i].getValue() == _Cells[j + 1][i].getValue())
+					{
+						_played = 1;
+					}
+				}
+			}
+		}
+		if(!_played)
 		{
 			return 1;
 		}
@@ -134,13 +143,11 @@ int Table::gameOver() {
 	return 0;
 }
 
-Table Table::createCopy()
-{
-	Table tableCopy = Table(_sizeX, _sizeY);
-	tableCopy.setCells(_Cells);
-	return tableCopy;
-
-}
+//void Table::createCopy()
+//{
+//	_tableCopy.clear();
+//	_tableCopy = _Cells;
+//}
 
 void Table::ShowGrid()
 {
