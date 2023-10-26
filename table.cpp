@@ -22,7 +22,7 @@ Table::Table(int sizeX, int sizeY)
 	NextTurn();
 }
 
-Table::Table() : Table( 2, 2 )
+Table::Table() : Table( 4, 4 )
 {
 }
 
@@ -110,6 +110,10 @@ int Table::gameOver() {
 				if (i != _sizeX - 1)
 				{
 					if (_Cells[j][i].getValue() == _Cells[j][i + 1].getValue())
+					{
+						_played = 1;
+					}
+					if (_Cells[j][i].getValue() == _Cells[j + 1][i].getValue())
 					{
 						_played = 1;
 					}
