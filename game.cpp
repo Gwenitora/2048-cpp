@@ -7,6 +7,10 @@ using namespace std;
 
 Game::Game()
 {
+	if (!_test.testing())
+	{
+		return;
+	}
 	int KeyDowned = 0;
 	_table.ShowGrid();
 	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
