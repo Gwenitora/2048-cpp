@@ -34,6 +34,12 @@
     <Filter Include="Fichiers d%27en-tête\Utils">
       <UniqueIdentifier>{79fd1fd8-b883-48b4-a0a5-a52fb09153a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Integration">
+      <UniqueIdentifier>{4d60cd54-107e-475f-8c78-6afa271bdf63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Integration">
+      <UniqueIdentifier>{61fc44a6-8918-40c6-b556-7599094a3927}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2048.cpp">
@@ -54,6 +60,9 @@
     <ClCompile Include="cmd.cpp">
       <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Fichiers sources\Integration</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2048.h">
@@ -73,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="graphic.h">
       <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Fichiers d%27en-tête\Integration</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
