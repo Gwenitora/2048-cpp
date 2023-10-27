@@ -25,7 +25,7 @@ Table::Table() : Table( 2, 2 )
 {
 }
 
-void Table::Regen()
+void Table::resetAllCells()
 {
 	for (int j = 0; j < _sizeY; j++)
 	{
@@ -34,6 +34,11 @@ void Table::Regen()
 			_Cells[j][i].reset();
 		}
 	}
+}
+
+void Table::Regen()
+{
+	resetAllCells();
 	NextTurn();
 }
 
@@ -276,48 +281,48 @@ void Table::fusion()
 }
 
 
-void Table::actionLeft()
+void Table::actionLeft(bool lockedWithoutGen)
 {
 	grip();
 	fusion();
 	grip();
-	if (_played)
+	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
 	}
 }
-void Table::actionRight()
+void Table::actionRight(bool lockedWithoutGen)
 {
 	RotateGrid(2);
 	grip();
 	fusion();
 	grip();
 	RotateGrid(2);
-	if (_played)
+	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
 	}
 }
-void Table::actionUp()
+void Table::actionUp(bool lockedWithoutGen)
 {
 	RotateGrid(3);
 	grip();
 	fusion();
 	grip();
 	RotateGrid(1);
-	if (_played)
+	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
 	}
 }
-void Table::actionDown()
+void Table::actionDown(bool lockedWithoutGen)
 {
 	RotateGrid(1);
 	grip();
 	fusion();
 	grip();
 	RotateGrid(3);
-	if (_played)
+	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
 	}

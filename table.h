@@ -18,9 +18,10 @@ private:
 	vector<Cell*> _list;
 
 public:
-	void Regen();
 	Table(int sizeX, int sizeY);
 	Table();
+	void resetAllCells();
+	void Regen();
 	void setCell(int x, int y, Cell cell);
 	void setCells(vector<vector<Cell>> cells);
 	Cell getCell(int x, int y);
@@ -32,9 +33,9 @@ public:
 	void fusion();
 	void getEmptyCells();
 	void NextTurn();
-	void actionLeft();
-	void actionRight();
-	void actionUp();
-	void actionDown();
+	void actionLeft(bool lockedWithoutGen = false);
+	void actionRight(bool lockedWithoutGen = false);
+	void actionUp(bool lockedWithoutGen = false);
+	void actionDown(bool lockedWithoutGen = false);
 	//void createCopy();
 };

@@ -5,15 +5,14 @@
 #include <chrono>
 using namespace std;
 
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-
 Game::Game()
 {
 	_validTexts = { "y", "yes" };
 	_playAgain = true;
+	if (!_test.testing())
+	{
+		return;
+	}
 	int KeyDowned = 0;
 	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
 	while(_playAgain)
