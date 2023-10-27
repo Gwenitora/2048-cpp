@@ -21,7 +21,7 @@ Table::Table(int sizeX, int sizeY)
 	NextTurn();
 }
 
-Table::Table() : Table( 4, 4 )
+Table::Table() : Table( 2, 2 )
 {
 }
 

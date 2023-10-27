@@ -17,10 +17,6 @@ void Cell::doubl()
 {
 	_value *= 2;
 }
-void Cell::divide()
-{
-	_value /= 2;
-}
 void Cell::reset()
 {
 	_value = 0;
