@@ -3,6 +3,10 @@
 #include "game.h"
 #include <Windows.h>
 #include <chrono>
+#include <iostream>
+#include <limits>
+#include <string>
+#undef max
 using namespace std;
 
 #define KEY_UP 72
@@ -71,22 +75,10 @@ Game::Game()
 	}
 }
 
-void ClearBuffer() 
-{
-	while ( true )
-	{
-		char c;
-		cin >> c;
-		if (c == '\n')
-			break;
-	}
-}
-
 void Game::PlayAgain() 
 {
 	cout <<endl<< "Do you want to play again?(y/n) ";
 	cin >> _text;
-	//ClearBuffer();
 	if (_text == _validTexts[0] || _text == _validTexts[1])
 	{
 		_playAgain = true;
@@ -96,7 +88,4 @@ void Game::PlayAgain()
 	else {
 		_playAgain = false;
 	}
-	//_text.clear();
-	
-	//cin.ignore(INT_MAX);
 }

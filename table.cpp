@@ -124,6 +124,7 @@ int Table::gameOver() {
 		}
 		if(!_played)
 		{
+			cout << endl << "Defeat";
 			return 1;
 		}
 	}
@@ -132,10 +133,11 @@ int Table::gameOver() {
 		for (int j = 0; j < _sizeX; j++)
 		{
 			if (_Cells[i][j].getValue() == 2048) {
+				cout << endl <<"Victory";
 				return 2;
 			}
 		}
-	}
+	} 
 	return 0;
 }
 
@@ -147,7 +149,7 @@ int Table::gameOver() {
 
 void Table::ShowGrid()
 {
-	system("CLS");
+	//system("CLS");
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
