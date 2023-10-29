@@ -8,6 +8,7 @@ using namespace std;
 
 Table::Table(int sizeX, int sizeY)
 {
+	//crée la table
 	_sizeX = sizeX;
 	_sizeY = sizeY;
 	_lengthAllCoords = _sizeY * _sizeX;
@@ -23,10 +24,12 @@ Table::Table(int sizeX, int sizeY)
 
 Table::Table() : Table( 2, 2 )
 {
+	//crée la table XxY
 }
 
 void Table::resetAllCells()
 {
+	//reset toutes les values des cells à 0
 	for (int j = 0; j < _sizeY; j++)
 	{
 		for (int i = 0; i < _sizeX; i++)
@@ -38,28 +41,16 @@ void Table::resetAllCells()
 
 void Table::Regen()
 {
+	//Regènere la table(fait un nextTurn pour générer les deux valeurs de base)
 	resetAllCells();
 	NextTurn();
 }
 
 void Table::Gen(int number) 
 {
+	//Appelle genereNew sur une case vide au hasard(ou plusieurs,dépend de la valeur number)
 	int listSize = _list.size();
-	//vector<int>coords(lengthAllCoords, 0);
 	for (int k = 0; k < number; k++) {
-		//int randomNumber = rand() % (_sizeX * _sizeY);
-		////cout << randomNumber << endl;
-		//int index = coords[randomNumber];
-		//for (int j = randomNumber; j < lengthAllCoords - 1; ++j)
-		//{
-		//	coords[j] = coords[j + 1];
-		//}
-
-		//lengthAllCoords--;
-
-		//int xcoord = index / _sizeX;
-		//int ycoord = index % _sizeY;
-		//_Cells[xcoord][ycoord].genereNew();
 		int randomNumber = rand() % (listSize);
 		_list[randomNumber]->genereNew();
 		for (int j = randomNumber; j < listSize - 1; j++)
@@ -72,6 +63,7 @@ void Table::Gen(int number)
 
 void Table::getEmptyCells()
 {
+	//push dans _list toutes les cases vides(value = 0)
 	_list.clear();
 	for (int i = 0; i < _sizeY;i++) {
 		for (int j = 0; j < _sizeX; j++) {
@@ -83,12 +75,10 @@ void Table::getEmptyCells()
 }
 
 void Table::NextTurn() {
+	//Appelle gen pour générer sur une ou plusieurs cases(dépend si toutes les cases sont vides ou non
+	//Appelle gameOver et si gameOver renvoie une valeur "vraie"(en l'occurence 1 ou 2)change la valeur de _inGame
 	_played = 0;
 	getEmptyCells();
-	//for (int i = 0; i < EmptyCells.size(); i++)
-	//{
-	//	cout << EmptyCells[i];
-	//}
 	if (_lengthAllCoords == _list.size()) {
 		Gen(2);
 	}
@@ -103,8 +93,21 @@ void Table::NextTurn() {
 }
 
 int Table::gameOver() {
+	//Regarde si le joueur a atteint 2048
+	//Regarde si des mouvements sont possibles(grip et fusion)
+	//Sinon renvoie 0 pour que la partie continue
 	getEmptyCells();
 	_played = 0;
+		for (int i = 0; i < _sizeY; i++)
+	{
+		for (int j = 0; j < _sizeX; j++)
+		{
+			if (_Cells[i][j].getValue() == 2048) {
+				cout << endl <<"Victory";
+				return 2;
+			}
+		}
+	} 
 	if (_list.size() == 0)
 	{
 		for (int j = 0; j < _sizeY; j++)
@@ -133,28 +136,14 @@ int Table::gameOver() {
 			return 1;
 		}
 	}
-	for (int i = 0; i < _sizeY; i++)
-	{
-		for (int j = 0; j < _sizeX; j++)
-		{
-			if (_Cells[i][j].getValue() == 2048) {
-				cout << endl <<"Victory";
-				return 2;
-			}
-		}
-	} 
 	return 0;
 }
 
-//void Table::createCopy()
-//{
-//	_tableCopy.clear();
-//	_tableCopy = _Cells;
-//}
-
 void Table::ShowGrid()
 {
-	//system("CLS");
+	//crée une grid custom pour que peu importe la taille de la grille(qu'elle soit carré ou non)
+	//l'espace à l'intérieur des cases soit le même peu importe le chiffre(ou nombre) à l'intérieur de celles-ci
+	system("CLS");
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
@@ -211,21 +200,25 @@ void Table::ShowGrid()
 
 void Table::setCell(int x, int y, Cell cell)
 {
+	//set une cell à des coordonnées spécifiques
 	_Cells[y][x] = cell;
 }
 
 void Table::setCells(vector<vector<Cell>> cells)
 {
+	//set un tableau entier de cell
 	_Cells = cells;
 }
 
 Cell Table::getCell(int x, int y)
 {
+	//retoure la celle demandé
 	return _Cells[y][x];
 }
 
 void Table::RotateGrid(int repeat)
 {
+	//tourne la grille dans le sens horaire
 	Table actual = Table(_sizeX, _sizeY);
 	actual.setCells(_Cells);
 	for (int k = 0; k < repeat; k++)
@@ -247,6 +240,7 @@ void Table::RotateGrid(int repeat)
 
 void Table::grip()
 {
+	//déplace vers la gauche les cases avec une valeur
 	for (int j = 0; j < _sizeY; j++)
 	{
 		int offset = 0;
@@ -268,6 +262,8 @@ void Table::grip()
 
 void Table::fusion()
 {
+	//fusionne deux cases : si deux cases sont collées(direction horizontale) et de même valeur,
+	// la case de gauche s'ajoutera la valeur de celle de droite et celle-ci sera reset
 	for (int j = 0; j < _sizeY; j++)
 	{
 		for (int i = 1; i < _sizeX ; i++)
@@ -285,6 +281,8 @@ void Table::fusion()
 
 void Table::actionLeft(bool lockedWithoutGen)
 {
+	//mouvement vers la gauche(déplacement/fusion/déplacement 
+	//puis regarde si un coup s'est joué,si oui appelle nextTurn qui regénère une value grâce à Gen
 	grip();
 	fusion();
 	grip();
@@ -295,6 +293,8 @@ void Table::actionLeft(bool lockedWithoutGen)
 }
 void Table::actionRight(bool lockedWithoutGen)
 {
+	//Pareil mais vers la droite
+	//on fait tourner la grille de 180°
 	RotateGrid(2);
 	grip();
 	fusion();
@@ -307,6 +307,8 @@ void Table::actionRight(bool lockedWithoutGen)
 }
 void Table::actionUp(bool lockedWithoutGen)
 {
+	//Pareil mais vers le haut
+	//on fait tourner la grille de 270°
 	RotateGrid(3);
 	grip();
 	fusion();
@@ -319,6 +321,8 @@ void Table::actionUp(bool lockedWithoutGen)
 }
 void Table::actionDown(bool lockedWithoutGen)
 {
+	//Pareil mais vers le bas
+	//on fait tourner la grille de 90°
 	RotateGrid(1);
 	grip();
 	fusion();
