@@ -18,8 +18,10 @@ public:
 	Table _topDoubleFusion;
 	Table _bottomDoubleFusion;
 
+	int _repeat;
 	int _loadingMax;
 	int _loaded;
+	int _lastPercent;
 	int _rotationState;
 
 	Table _actualTest;

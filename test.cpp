@@ -2,46 +2,50 @@
 
 void Integration::printLoadingBar()
 {
-	system("CLS");
 	int lengthProgressBar = 20;
 	int pct = (_loaded * 100) / _loadingMax;
-	int progressBar = pct / (100 / lengthProgressBar);
-	switch (_rotationState)
+	if (pct != _lastPercent)
 	{
-	case 0:
-		cout << "-";
-		break;
-	case 1:
-		cout << "\\";
-		break;
-	case 2:
-		cout << "|";
-		break;
-	case 3:
-		cout << "/";
-		break;
-	default:
-		cout << "-";
-		break;
+		system("CLS");
+		_lastPercent = pct;
+		int progressBar = pct / (100 / lengthProgressBar);
+		switch (_rotationState)
+		{
+		case 0:
+			cout << "-";
+			break;
+		case 1:
+			cout << "\\";
+			break;
+		case 2:
+			cout << "|";
+			break;
+		case 3:
+			cout << "/";
+			break;
+		default:
+			cout << "-";
+			break;
+		}
+		_rotationState++;
+		_rotationState %= 4;
+		cout << " [";
+		for (int i = 0; i < progressBar; i++)
+		{
+			cout << "-";
+		}
+		for (int i = 0; i < lengthProgressBar - progressBar; i++)
+		{
+			cout << " ";
+		}
+		cout << "] " << pct << "%" << endl;
 	}
-	_rotationState++;
-	_rotationState %= 4;
-	cout << " [";
-	for (int i = 0; i < progressBar; i++)
-	{
-		cout << "-";
-	}
-	for (int i = 0; i < lengthProgressBar - progressBar; i++)
-	{
-		cout << " ";
-	}
-	cout << "] " << pct << "%" << endl;
 }
 
 bool Integration::testing()
 {
 	_loaded = 0;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < _repeat; i++)
 	{
 		printLoadingBar();
 
@@ -51,6 +55,7 @@ bool Integration::testing()
 		_actualTest.actionLeft(true);
 		if (!_actualTest.compare(_left))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "Normal: left";
 			_starting.ShowGrid(false);
@@ -66,6 +71,7 @@ bool Integration::testing()
 		_actualTest.actionRight(true);
 		if (!_actualTest.compare(_right))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "Normal: right";
 			_starting.ShowGrid(false);
@@ -81,6 +87,7 @@ bool Integration::testing()
 		_actualTest.actionUp(true);
 		if (!_actualTest.compare(_top))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "Normal: top";
 			_starting.ShowGrid(false);
@@ -96,6 +103,7 @@ bool Integration::testing()
 		_actualTest.actionDown(true);
 		if (!_actualTest.compare(_bottom))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "Normal: bottom";
 			_starting.ShowGrid(false);
@@ -112,6 +120,7 @@ bool Integration::testing()
 		_actualTest.actionLeft(true);
 		if (!_actualTest.compare(_startingNoMoves))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "NoMoves: left";
 			_startingNoMoves.ShowGrid(false);
@@ -127,6 +136,7 @@ bool Integration::testing()
 		_actualTest.actionRight(true);
 		if (!_actualTest.compare(_startingNoMoves))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "NoMoves: right";
 			_startingNoMoves.ShowGrid(false);
@@ -142,6 +152,7 @@ bool Integration::testing()
 		_actualTest.actionUp(true);
 		if (!_actualTest.compare(_startingNoMoves))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "NoMoves: top";
 			_startingNoMoves.ShowGrid(false);
@@ -157,6 +168,7 @@ bool Integration::testing()
 		_actualTest.actionDown(true);
 		if (!_actualTest.compare(_startingNoMoves))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "NoMoves: bottom";
 			_startingNoMoves.ShowGrid(false);
@@ -173,6 +185,7 @@ bool Integration::testing()
 		_actualTest.actionLeft(true);
 		if (!_actualTest.compare(_leftDoubleFusion))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "DoubleFusion: left";
 			_startingDoubleFusion.ShowGrid(false);
@@ -188,6 +201,7 @@ bool Integration::testing()
 		_actualTest.actionRight(true);
 		if (!_actualTest.compare(_rightDoubleFusion))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "DoubleFusion: right";
 			_startingDoubleFusion.ShowGrid(false);
@@ -203,6 +217,7 @@ bool Integration::testing()
 		_actualTest.actionUp(true);
 		if (!_actualTest.compare(_topDoubleFusion))
 		{
+			system("CLS");
 			printLoadingBar();
 			cout << "DoubleFusion: top";
 			_startingDoubleFusion.ShowGrid(false);
@@ -234,8 +249,10 @@ bool Integration::testing()
 }
 
 Integration::Integration()
-{ 
-	_loadingMax = 100 * 4 * 3;
+{
+	_lastPercent = -1;
+	_repeat = 100;
+	_loadingMax = _repeat * 4 * 3;
 	_loaded = 0;
 	_rotationState = 0;
 
@@ -332,12 +349,12 @@ Integration::Integration()
 	_rightDoubleFusion.setCell(0, 1, Cell(2));
 
 	_rightDoubleFusion.setCell(1, 1, Cell(4));
-	_rightDoubleFusion.setCell(1, 3, Cell(4));
+	_rightDoubleFusion.setCell(1, 3, Cell(2));
 
 	_rightDoubleFusion.setCell(2, 0, Cell(8));
 	_rightDoubleFusion.setCell(2, 1, Cell(2));
 	_rightDoubleFusion.setCell(2, 2, Cell(4));
-	_rightDoubleFusion.setCell(2, 3, Cell(2));
+	_rightDoubleFusion.setCell(2, 3, Cell(4));
 
 	_rightDoubleFusion.setCell(3, 0, Cell(4));
 	_rightDoubleFusion.setCell(3, 1, Cell(4));

@@ -350,7 +350,7 @@ void Table::createCopy(Table gettingTable)
 
 	for (int j = 0; j < _sizeY; j++)
 	{
-		for (int i = 1; i < _sizeX; i++)
+		for (int i = 0; i < _sizeX; i++)
 		{
 			setCell(i, j, Cell(gettingTable.getCell(i, j).getValue()));
 		}
@@ -370,7 +370,7 @@ bool Table::compare(Table tableToCompare)
 
 	for (int j = 0; j < _sizeY; j++)
 	{
-		for (int i = 1; i < _sizeX; i++)
+		for (int i = 0; i < _sizeX; i++)
 		{
 			if (getCell(i, j).getValue() != tableToCompare.getCell(i, j).getValue())
 			{
