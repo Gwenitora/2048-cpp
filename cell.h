@@ -12,7 +12,6 @@ public:
 	int getValue();
 	
 	void doubl();
-	void divide();
 	void reset();
 	void genereNew();
 };
