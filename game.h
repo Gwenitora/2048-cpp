@@ -9,7 +9,7 @@ class Game
 	vector<string> _validTexts;
 	bool _playAgain;
 	void PlayAgain();
-	//Integration _test;
+	Integration _test;
 public:
 	Game();
 };

@@ -22,7 +22,7 @@ Table::Table(int sizeX, int sizeY)
 	NextTurn();
 }
 
-Table::Table() : Table( 2, 2 )
+Table::Table() : Table( 4, 4 )
 {
 	//crée la table XxY
 }

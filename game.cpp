@@ -13,10 +13,10 @@ Game::Game()
 {
 	_validTexts = { "y", "yes" };
 	_playAgain = true;
-	//if (!_test.testing())
-	//{
-	//	return;
-	//}
+	if (!_test.testing())
+	{
+		return;
+	}
 	int KeyDowned = 0;
 	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
 	while(_playAgain)
