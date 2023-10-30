@@ -25,7 +25,7 @@ public:
 	void setCell(int x, int y, Cell cell);
 	void setCells(vector<vector<Cell>> cells);
 	Cell getCell(int x, int y);
-	void ShowGrid();
+	void ShowGrid(bool cls = true);
 	void RotateGrid(int repeat);
 	void Gen(int number);
 	void grip();
@@ -37,5 +37,6 @@ public:
 	void actionRight(bool lockedWithoutGen = false);
 	void actionUp(bool lockedWithoutGen = false);
 	void actionDown(bool lockedWithoutGen = false);
-	//void createCopy();
+	void createCopy(Table gettingTable);
+	bool compare(Table tableToCompare);
 };

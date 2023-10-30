@@ -22,6 +22,8 @@ public:
 	int _loaded;
 	int _rotationState;
 
+	Table _actualTest;
+
 public:
 	Integration();
 	bool testing();

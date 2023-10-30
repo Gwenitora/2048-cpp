@@ -139,11 +139,14 @@ int Table::gameOver() {
 	return 0;
 }
 
-void Table::ShowGrid()
+void Table::ShowGrid(bool cls)
 {
 	//crée une grid custom pour que peu importe la taille de la grille(qu'elle soit carré ou non)
 	//l'espace à l'intérieur des cases soit le même peu importe le chiffre(ou nombre) à l'intérieur de celles-ci
-	system("CLS");
+	if (cls)
+	{
+		system("CLS");
+	}
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
@@ -332,4 +335,48 @@ void Table::actionDown(bool lockedWithoutGen)
 	{
 		NextTurn();
 	}
+}
+
+void Table::createCopy(Table gettingTable)
+{
+	_sizeX = gettingTable._sizeX;
+	_sizeY = gettingTable._sizeY;
+
+	_Cells.resize(_sizeY);
+	for (int j = 0; j < _sizeY; j++)
+	{
+		_Cells[j].resize(_sizeX);
+	}
+
+	for (int j = 0; j < _sizeY; j++)
+	{
+		for (int i = 1; i < _sizeX; i++)
+		{
+			setCell(i, j, Cell(gettingTable.getCell(i, j).getValue()));
+		}
+	}
+}
+
+bool Table::compare(Table tableToCompare)
+{
+	if (_sizeX != tableToCompare._sizeX)
+	{
+		return false;
+	}
+	if (_sizeY != tableToCompare._sizeY)
+	{
+		return false;
+	}
+
+	for (int j = 0; j < _sizeY; j++)
+	{
+		for (int i = 1; i < _sizeX; i++)
+		{
+			if (getCell(i, j).getValue() != tableToCompare.getCell(i, j).getValue())
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }
