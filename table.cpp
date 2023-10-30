@@ -15,6 +15,7 @@ Table::Table(int sizeX, int sizeY)
 	_lengthAllCoords = _sizeY * _sizeX;
 	_inGame = 1;
 	_played = 0;
+	_score = 0;
 	_Cells.resize(_sizeY);
 	for (int j = 0; j < _sizeY; j++)
 	{
@@ -31,6 +32,7 @@ Table::Table() : Table( 4, 4 )
 void Table::resetAllCells()
 {
 	// reset toutes les values des cells à 0
+	_score = 0;
 	for (int j = 0; j < _sizeY; j++)
 	{
 		for (int i = 0; i < _sizeX; i++)
@@ -214,6 +216,7 @@ void Table::fusion()
 			{
 				_Cells[j][i - 1].doubl();
 				_Cells[j][i].reset();
+				_score += _Cells[j][i - 1].getValue();
 				_played = 1;
 			}
 		}
@@ -326,16 +329,7 @@ bool Table::compare(Table tableToCompare)
 
 int Table::getScore()
 {
-	// calcul du score du tableau
-	int score = 0;
-	for (int j = 0; j < _sizeY; j++)
-	{
-		for (int i = 0; i < _sizeX; i++)
-		{
-			score += getCell(i, j).getValue();
-		}
-	}
-	return score;
+	return _score;
 }
 
 void Table::ShowGrid(bool cls)

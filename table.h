@@ -17,6 +17,7 @@ private:
 	int _lengthAllCoords;
 	int _played;
 	vector<Cell*> _list;
+	int _score;
 
 public:
 	Table(int sizeX, int sizeY);
