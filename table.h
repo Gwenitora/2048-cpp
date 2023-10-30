@@ -39,4 +39,5 @@ public:
 	void actionDown(bool lockedWithoutGen = false);
 	void createCopy(Table gettingTable);
 	bool compare(Table tableToCompare);
+	int getScore();
 };

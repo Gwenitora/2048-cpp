@@ -147,6 +147,7 @@ void Table::ShowGrid(bool cls)
 	{
 		system("CLS");
 	}
+	cout << "score: " << getScore();
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
@@ -379,4 +380,17 @@ bool Table::compare(Table tableToCompare)
 		}
 	}
 	return true;
+}
+
+int Table::getScore()
+{
+	int score = 0;
+	for (int j = 0; j < _sizeY; j++)
+	{
+		for (int i = 0; i < _sizeX; i++)
+		{
+			score += getCell(i, j).getValue();
+		}
+	}
+	return score;
 }
