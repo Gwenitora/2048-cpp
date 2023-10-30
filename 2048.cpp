@@ -3,6 +3,8 @@
 
 int main()
 {
+	// set de la seed
 	srand(time(NULL));
+	// lancement du jeux
     Game _game;
 }

@@ -1,5 +1,6 @@
 #include "test.h"
 
+// affiche la bar de chargement (uniquement s'il y a un changement dans le chargement)
 void Integration::printLoadingBar()
 {
 	int lengthProgressBar = 20;
@@ -42,6 +43,7 @@ void Integration::printLoadingBar()
 	}
 }
 
+// réalise les test d'intégrations
 bool Integration::testing()
 {
 	_loaded = 0;
@@ -50,7 +52,6 @@ bool Integration::testing()
 		printLoadingBar();
 
 		// table classic
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_starting);
 		_actualTest.actionLeft(true);
 		if (!_actualTest.compare(_left))
@@ -66,7 +67,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_starting);
 		_actualTest.actionRight(true);
 		if (!_actualTest.compare(_right))
@@ -82,7 +82,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_starting);
 		_actualTest.actionUp(true);
 		if (!_actualTest.compare(_top))
@@ -98,7 +97,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_starting);
 		_actualTest.actionDown(true);
 		if (!_actualTest.compare(_bottom))
@@ -115,7 +113,6 @@ bool Integration::testing()
 		printLoadingBar();
 
 		// table noMoves
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingNoMoves);
 		_actualTest.actionLeft(true);
 		if (!_actualTest.compare(_startingNoMoves))
@@ -131,7 +128,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingNoMoves);
 		_actualTest.actionRight(true);
 		if (!_actualTest.compare(_startingNoMoves))
@@ -147,7 +143,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingNoMoves);
 		_actualTest.actionUp(true);
 		if (!_actualTest.compare(_startingNoMoves))
@@ -163,7 +158,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingNoMoves);
 		_actualTest.actionDown(true);
 		if (!_actualTest.compare(_startingNoMoves))
@@ -180,7 +174,6 @@ bool Integration::testing()
 		printLoadingBar();
 
 		// table DoubleFusion
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingDoubleFusion);
 		_actualTest.actionLeft(true);
 		if (!_actualTest.compare(_leftDoubleFusion))
@@ -196,7 +189,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingDoubleFusion);
 		_actualTest.actionRight(true);
 		if (!_actualTest.compare(_rightDoubleFusion))
@@ -212,7 +204,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingDoubleFusion);
 		_actualTest.actionUp(true);
 		if (!_actualTest.compare(_topDoubleFusion))
@@ -228,7 +219,6 @@ bool Integration::testing()
 		_loaded++;
 		printLoadingBar();
 
-		_actualTest.resetAllCells();
 		_actualTest.createCopy(_startingDoubleFusion);
 		_actualTest.actionDown(true);
 		if (!_actualTest.compare(_bottomDoubleFusion))
@@ -248,10 +238,11 @@ bool Integration::testing()
 	return true;
 }
 
+// hardcode les résultats des test d'integrations
 Integration::Integration()
 {
 	_lastPercent = -1;
-	_repeat = 100;
+	_repeat = 1000;
 	_loadingMax = _repeat * 4 * 3;
 	_loaded = 0;
 	_rotationState = 0;

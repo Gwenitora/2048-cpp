@@ -13,20 +13,23 @@ Game::Game()
 {
 	_validTexts = { "y", "yes" };
 	_playAgain = true;
+
+	// test d'integration
 	if (!_test.testing())
 	{
 		return;
 	}
 	int KeyDowned = 0;
-	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
+
+	// boucle de jeu
 	while(_playAgain)
 	{
 		_table.ShowGrid();
 		while (_table._inGame)
 		{
+			// attends qu'une clef valide soit presser
 			while (!KeyDowned)
 			{
-				timer = chrono::steady_clock::now();
 				if (GetKeyState(VK_UP) == -127 || GetKeyState(VK_UP) == -128)
 				{
 					_table.actionUp();
@@ -48,8 +51,9 @@ Game::Game()
 					KeyDowned = 4;
 				}
 			}
-			//cout << chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - timer).count() << endl;
 			_table.ShowGrid();
+
+			// attends que la clef presser soit relacher
 			while (KeyDowned)
 			{
 				if ((GetKeyState(VK_UP) == 0 || GetKeyState(VK_UP) == 1) && KeyDowned == 1)
@@ -74,6 +78,7 @@ Game::Game()
 	}
 }
 
+// propose un redémarrage du jeu
 void Game::PlayAgain() 
 {
 	cout <<endl<< "Do you want to play again?(y/n) ";
