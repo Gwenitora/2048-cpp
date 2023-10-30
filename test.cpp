@@ -9,12 +9,11 @@ bool Integration::testing()
 {
 	_loaded = 0;
 	printLoadingBar();
-
 	return true;
 }
 
 Integration::Integration()
-{
+{ 
 	_loadingMax = 100 * 4 * 3;
 	_loaded = 0;
 	_rotationState = 0;
