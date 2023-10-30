@@ -9,6 +9,8 @@ bool Integration::testing()
 {
 	_loaded = 0;
 	printLoadingBar();
+
+	return true;
 }
 
 Integration::Integration()
