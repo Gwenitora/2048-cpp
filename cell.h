@@ -10,7 +10,6 @@ public:
 	Cell(int value);
 
 	int getValue();
-	
 	void doubl();
 	void reset();
 	void genereNew();
