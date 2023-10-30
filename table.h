@@ -2,6 +2,7 @@
 #include "cell.h"
 #include <iostream>
 #include <vector>
+
 using namespace std;
 class Game;
 class Table
@@ -9,10 +10,10 @@ class Table
 public:
 	int _inGame;
 	vector<vector<Cell>> _Cells;
-
-private:
 	int _sizeX;
 	int _sizeY;
+
+private:
 	int _lengthAllCoords;
 	int _played;
 	vector<Cell*> _list;
@@ -25,7 +26,6 @@ public:
 	void setCell(int x, int y, Cell cell);
 	void setCells(vector<vector<Cell>> cells);
 	Cell getCell(int x, int y);
-	void ShowGrid(bool cls = true);
 	void RotateGrid(int repeat);
 	void Gen(int number);
 	void grip();
@@ -40,4 +40,5 @@ public:
 	void createCopy(Table gettingTable);
 	bool compare(Table tableToCompare);
 	int getScore();
+	void ShowGrid(bool cls = true);
 };

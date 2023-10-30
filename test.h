@@ -1,5 +1,6 @@
 #pragma once
 #include "table.h"
+#include "cmd.h"
 
 class Integration
 {

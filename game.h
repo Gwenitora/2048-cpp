@@ -10,6 +10,7 @@ class Game
 	bool _playAgain;
 	void PlayAgain();
 	Integration _test;
+
 public:
 	Game();
 };

@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h> 
+#include "Cmd.h"
 using namespace std;
 
 Table::Table(int sizeX, int sizeY)
@@ -137,69 +138,6 @@ int Table::gameOver() {
 	}
 	// Sinon renvoie 0 pour que la partie continue
 	return 0;
-}
-
-void Table::ShowGrid(bool cls)
-{
-	// crée une grid custom pour que peu importe la taille de la grille (qu'elle soit carré ou non)
-	// l'espace à l'intérieur des cases soit le même peu importe le chiffre (ou nombre) à l'intérieur de celles-ci
-	if (cls)
-	{
-		system("CLS");
-	}
-	cout << "score: " << getScore();
-	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY)));
-	string preString = " ";
-	string verticalSeperation = " | ";
-	string horizontalSeperation = " ";
-	for (int i = 0; i < (maxSize + 4) * _sizeX + 1; i++)
-	{
-		horizontalSeperation += "-";
-	}
-	string horizontalEmptySeperation = verticalSeperation;
-	for (int i = 0; i < _sizeX; i++)
-	{
-		for (int i = 0; i < maxSize +1; i++)
-		{
-			horizontalEmptySeperation += preString;
-		}
-		horizontalEmptySeperation += verticalSeperation;
-	}
-	for (int j = 0; j < _sizeY; j++)
-	{
-		cout << endl << horizontalSeperation;
-		for (int k = 0; k < ((maxSize + .5f) / 2 - .5f) / 2; k++)
-		{
-			cout << endl << horizontalEmptySeperation;
-		}
-		cout << endl << verticalSeperation;
-		for (int i = 0; i < _sizeX; i++)
-		{
-			int len = (maxSize - (_Cells[j][i].getValue() == 0 ? 1 : log10(_Cells[j][i].getValue())));
-			for (int k = 0; k < (len - .5f) /2; k++)
-			{
-				cout << preString;
-			}
-			if (_Cells[j][i].getValue() == 0)
-			{
-				cout << " ";
-			}
-			else
-			{
-				cout << _Cells[j][i].getValue();
-			}
-			for (int k = 0; k < (len + .5f) / 2; k++)
-			{
-				cout << preString;
-			}
-			cout << verticalSeperation;
-		}
-		for (int k = 0; k < ((maxSize + .5f) / 2 - .5f) / 2; k++)
-		{
-			cout << endl << horizontalEmptySeperation;
-		}
-	}
-	cout << endl << horizontalSeperation;
 }
 
 void Table::setCell(int x, int y, Cell cell)
@@ -398,4 +336,9 @@ int Table::getScore()
 		}
 	}
 	return score;
+}
+
+void Table::ShowGrid(bool cls)
+{
+	Cmd::printOnConsole(this, cls);
 }
