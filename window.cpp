@@ -1,0 +1,80 @@
+#include "window.h"
+#include <iostream>
+#include <SDL.h>
+#include <vector>
+using namespace std;
+
+Window::Window(int sizeX,int sizeY) {
+	 _sizeX = sizeX;
+	 _sizeY = sizeY;
+	 _window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _sizeX, _sizeY, SDL_WINDOW_OPENGL);
+	 _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+	 SDL_Surface* winSurface;
+	 if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+		 cout << "Error initializing SDL: " << SDL_GetError() << endl;
+		 system("pause");
+		 return;
+	 }
+	 _grid.resize(4);
+	 for (int i = 0; i < 4; i++) {
+		 _grid[i].resize(4);
+	 }
+	 if (!_window) {
+		 cout << "Error creating window: " << SDL_GetError() << endl;
+		 system("pause");
+		 return;
+	 }
+	 SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND);
+	 winSurface = SDL_GetWindowSurface(_window);
+	 if (!winSurface) {
+		 cout << "Error getting surface: " << SDL_GetError() << endl;
+		 system("pause");
+		 return;
+	 }
+	 SDL_SetRenderDrawColor(_renderer, 250, 248, 239, 255);
+	 SDL_RenderClear(_renderer);
+	 DrawGrid();
+	 Draw();
+	 SDL_RenderPresent(_renderer);
+	 system("pause");
+
+	 SDL_DestroyWindow(_window);
+
+	 SDL_Quit();
+	 return;
+}
+
+Window::Window() : Window(1280, 800) {
+
+}
+
+void Window::DrawGrid() {
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < 4; i++) {
+			_grid[j][i].x = (1280 / 4) + 20 + (145 * i);
+			_grid[j][i].y = (800 / 8) + 20 + (145 * j);
+			_grid[j][i].h = 125;
+			_grid[j][i].w = 125;
+		}
+	}
+	SDL_Rect backGrid;
+	backGrid.x = 1280 / 4;
+	backGrid.y = 800 / 8;
+	backGrid.h = 600;
+	backGrid.w = 600;
+	SDL_SetRenderDrawColor(_renderer, 205, 193, 180, 255);
+	SDL_RenderFillRect(_renderer, &backGrid);
+	SDL_SetRenderDrawColor(_renderer, 187, 173, 160, 255);
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < 4; i++) {
+			SDL_RenderFillRect(_renderer, &_grid[j][i]);
+		}
+	}
+}
+
+void Window::Draw() {
+	for (int i = 0; i < _objectList.size(); i++)
+	{
+		_objectList[i].draw();
+	}
+}
