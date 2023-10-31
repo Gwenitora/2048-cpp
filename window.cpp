@@ -9,6 +9,9 @@ Window::Window(int sizeX,int sizeY) {
 	 _sizeY = sizeY;
 	 _window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _sizeX, _sizeY, SDL_WINDOW_OPENGL);
 	 _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+	 for (int i = 0; i < 322; i++) {
+		 _KEYS[i] = false;
+	 }
 	 SDL_Surface* winSurface;
 	 if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		 cout << "Error initializing SDL: " << SDL_GetError() << endl;
@@ -33,14 +36,15 @@ Window::Window(int sizeX,int sizeY) {
 	 }
 	 SDL_SetRenderDrawColor(_renderer, 250, 248, 239, 255);
 	 SDL_RenderClear(_renderer);
+
 	 DrawGrid();
 	 Draw();
+	 GetKey();
 	 SDL_RenderPresent(_renderer);
-	 system("pause");
 
-	 SDL_DestroyWindow(_window);
+	 //SDL_DestroyWindow(_window);
 
-	 SDL_Quit();
+	 //SDL_Quit();
 	 return;
 }
 
@@ -76,5 +80,41 @@ void Window::Draw() {
 	for (int i = 0; i < _objectList.size(); i++)
 	{
 		_objectList[i].draw();
+	}
+}
+
+void Window::GetKey() {
+	SDL_Event event;
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+		case SDL_QUIT:
+			//_Game = 0;
+			break;
+		case SDL_KEYDOWN:
+			_KEYS[event.key.keysym.sym] = true;
+			HandleInput();
+			break;
+		case SDL_KEYUP:
+			_KEYS[event.key.keysym.sym] = false;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void Window::HandleInput() {
+	cout << SDLK_LEFT;
+	if (_KEYS[SDLK_LEFT]) {
+		_table.actionLeft();
+	}
+	if (_KEYS[SDLK_RIGHT]) { 
+		_table.actionRight();
+		}
+	if (_KEYS[SDLK_UP]) { 
+		_table.actionUp();
+	}
+	if (_KEYS[SDLK_DOWN]) { 
+		_table.actionDown();
 	}
 }

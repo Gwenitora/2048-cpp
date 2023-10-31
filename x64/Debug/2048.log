@@ -1,3 +1,2 @@
 ﻿  window.cpp
-C:\Users\gcharlesnicolai\source\repos\2048-cpp\window.cpp(78,18): error C2039: 'draw' n'est pas membre de 'GameObject'
-C:\Users\gcharlesnicolai\source\repos\2048-cpp\gameObject.h(2,7): message : voir la déclaration de 'GameObject'
+  2048.vcxproj -> C:\Users\gcharlesnicolai\source\repos\2048-cpp\x64\Debug\2048.exe

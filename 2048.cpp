@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 	//srand(time(NULL));
 	//Graphic _graphic;
 	Window _window(1280,800);
-    //Game _game;
+    Game _game;
 
 	return 0;
 }
