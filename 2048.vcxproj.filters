@@ -72,6 +72,9 @@
     <ClCompile Include="window.cpp">
       <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
+    <ClCompile Include="vect.cpp">
+      <Filter>Fichiers sources\Game\Graphic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2048.h">
@@ -102,6 +105,9 @@
       <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
     </ClInclude>
     <ClInclude Include="gameObject.h">
+      <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="vect.h">
       <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
     </ClInclude>
   </ItemGroup>
