@@ -6,11 +6,7 @@
 using namespace std;
 Graphic::Graphic()
 	{
-	TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
-	SDL_Color Black = { 255, 255, 255 };
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, "2", Black);
 	SDL_Surface* winSurface;
-	SDL_Surface* backGridSurface;
 	SDL_Window* window;
 	vector<vector<SDL_Rect>> grid;
 	grid.resize(4);
@@ -22,7 +18,7 @@ Graphic::Graphic()
 		system("pause");
 		return ;
 	}
-
+	TTF_Init();
 	window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 800, SDL_WINDOW_OPENGL);
 	if (!window) {
 		cout << "Error creating window: " << SDL_GetError() << endl;
@@ -31,12 +27,16 @@ Graphic::Graphic()
 	}
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
+	SDL_Color Black = { 0, 0, 0 };
+	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, "2", Black);
 	SDL_Rect backGrid;
 	backGrid.x = 1280/4;
 	backGrid.y = 800/8;
 	backGrid.h = 600;
 	backGrid.w = 600;
 	winSurface = SDL_GetWindowSurface(window);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 	if (!winSurface) {
 		cout << "Error getting surface: " << SDL_GetError() << endl;
 		system("pause");
@@ -55,25 +55,29 @@ Graphic::Graphic()
 	SDL_SetRenderDrawColor(renderer, 205, 193, 180, 255);
 	SDL_RenderFillRect(renderer, &backGrid);
 	SDL_SetRenderDrawColor(renderer, 187, 173, 160, 255);
-	SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 4; i++) {
 			SDL_RenderFillRect(renderer, &grid[j][i]);
+			SDL_Rect dstrect;
+			dstrect.x = (1280 / 4) + 55 + (145 * i);
+			dstrect.y = (800 / 8) + 60 + (145 * j);
+			dstrect.h = 50;
+			dstrect.w = 50;
+			SDL_RenderCopy(renderer, texture, NULL, &dstrect);
 		}
 	}
-	SDL_Rect Message_rect;
-	Message_rect.x = 0;
-	Message_rect.y = 0;
-	Message_rect.w = 100;
-	Message_rect.h = 100;
-	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+	//SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	//SDL_RenderFillRect(renderer, &Message_rect);
 	SDL_RenderPresent(renderer);
+	//SDL_RenderCopy(renderer, texture, NULL, NULL);
+	//SDL_RenderPresent(renderer);
 
 	system("pause");
 
 	SDL_DestroyWindow(window);
 
 	SDL_Quit();
-
+		
+	TTF_Quit();
 	return ;
 	};
