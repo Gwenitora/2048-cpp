@@ -1,2 +1,20 @@
-﻿  graphic.cpp
-  2048.vcxproj -> C:\Users\gcharlesnicolai\source\repos\2048-cpp\x64\Debug\2048.exe
+﻿  2048.cpp
+  cell.cpp
+  cmd.cpp
+  colors.cpp
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\colors.cpp(84,29): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\colors.cpp(83,29): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\colors.cpp(82,29): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\colors.cpp(81,29): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+  game.cpp
+  gameObject.cpp
+  graphic.cpp
+  table.cpp
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(52,15): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(147,14): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+C:\Users\gacquart-reylans\Documents\repos\2048-cpp\table.cpp(174,12): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+  test.cpp
+  window.cpp
+  Génération de code en cours...
+  LINK : C:\Users\gacquart-reylans\Documents\repos\2048-cpp\x64\Debug\2048.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
+  2048.vcxproj -> C:\Users\gacquart-reylans\Documents\repos\2048-cpp\x64\Debug\2048.exe

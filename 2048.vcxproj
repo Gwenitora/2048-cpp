@@ -137,6 +137,7 @@
     <ClCompile Include="2048.cpp" />
     <ClCompile Include="cell.cpp" />
     <ClCompile Include="cmd.cpp" />
+    <ClCompile Include="colors.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="graphic.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="2048.h" />
     <ClInclude Include="cell.h" />
     <ClInclude Include="cmd.h" />
+    <ClInclude Include="colors.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="graphic.h" />
