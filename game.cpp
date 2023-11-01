@@ -106,6 +106,8 @@ void Game::GraphicGame() {
 	int keyDownSDL = 0;
 	while (_playAgain)
 	{
+		SDL_PumpEvents();
+		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 		_table.ShowGrid();
 		_window.DrawGrid();
 		for (int j = 0; j < 4; j++)
@@ -114,6 +116,9 @@ void Game::GraphicGame() {
 			{
 				if ((_table.getCell(i, j)).getValue() != 0) {
 					GameObject Cell;
+					Cell._x = i;
+					Cell._y = j;
+					Cell.setText(to_string((_table.getCell(i, j)).getValue()));
 					_window._objectList.push_back(Cell);
 				}
 			}
@@ -154,11 +159,15 @@ void Game::GraphicGame() {
 							{
 								if ((_table.getCell(i, j)).getValue() != 0) {
 									GameObject Cell;
+									Cell._x = i;
+									Cell._y = j;
 									Cell.setText(to_string((_table.getCell(i, j)).getValue()));
 									_window._objectList.push_back(Cell);
 								}
 							}
 						}
+						_table.ShowGrid();
+						_window.DrawGrid();
 						_window.Draw();
 						break;
 					case SDL_KEYUP:
@@ -167,7 +176,6 @@ void Game::GraphicGame() {
 					default:
 						break;
 					}
-					_table.ShowGrid();
 				}
 		}
 		PlayAgain();

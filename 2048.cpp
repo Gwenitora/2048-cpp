@@ -5,7 +5,7 @@
 
 int main(int argc, char** argv)
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 	//Graphic _graphic;
 	//Window _window;
     Game _game;

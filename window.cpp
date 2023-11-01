@@ -15,6 +15,7 @@ Window::Window(int sizeX,int sizeY) {
 		 system("pause");
 		 return;
 	 }
+	 TTF_Init();
 	 _grid.resize(4);
 	 for (int i = 0; i < 4; i++) {
 		 _grid[i].resize(4);
@@ -77,7 +78,7 @@ void Window::DrawGrid() {
 void Window::Draw() {
 	for (int i = 0; i < _objectList.size(); i++)
 	{
-		_objectList[i].draw();
+		_objectList[i].draw( _renderer);
 	}
 	_objectList.clear();
 	SDL_RenderPresent(_renderer);
