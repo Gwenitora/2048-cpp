@@ -1,2 +1,3 @@
 C:\Users\gacquart-reylans\Documents\repos\2048-cpp\x64\Debug\2048.exe
 C:\Users\gcharlesnicolai\source\repos\2048-cpp\x64\Debug\2048.exe
+C:\Users\chopp\source\repos\2048-cpp\x64\Debug\2048.exe

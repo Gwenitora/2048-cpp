@@ -1,7 +1,8 @@
 #pragma once
 #include "table.h"
 #include "test.h"
-
+#include "window.h"
+#include "gameObject.h"
 class Game
 {
 	Table _table;
@@ -10,6 +11,8 @@ class Game
 	bool _playAgain;
 	void PlayAgain();
 	Integration _test;
+	void CmdGame();
+	void GraphicGame();
 public:
 	Game();
 };

@@ -212,7 +212,7 @@ void Table::setCells(vector<vector<Cell>> cells)
 
 Cell Table::getCell(int x, int y)
 {
-	//retoure la celle demandé
+	//retourne la cell demandée
 	return _Cells[y][x];
 }
 
