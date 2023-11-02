@@ -124,10 +124,17 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 	//SDL_Color Black = { 0, 0, 0 };
 	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
 	//SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-	_dstrect.x = (1280 / 4) + 55 + (145 * _pos.x());
+	_dstrect.x = (1280 / 4) + 80 + (145 * _pos.x());
 	_dstrect.y = (800 / 8) + 60 + (145 * _pos.y());
 	_dstrect.h = 50;
-	_dstrect.w = 50;
+	_dstrect.w = 30;
+
+	if (stoi(_textContent) > 0)
+	{
+		int modificator = log10(stoi(_textContent)) + 1;
+		_dstrect.w *= modificator;
+	}
+	_dstrect.x -= _dstrect.w * .5f;
 	if(_textContent != "0")
 	{
 		Color actualColorBg;
