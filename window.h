@@ -32,7 +32,7 @@ public:
 	Window(int sizeX,int sizeY);
 	Window();
 	void draw();
-	void drawplayAgain();
+	void drawPlayAgain();
 	void drawGrid();
 	void drawSurface();
 	void drawScore(Table table);

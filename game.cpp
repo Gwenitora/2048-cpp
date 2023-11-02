@@ -190,7 +190,7 @@ void Game::graphicGame() {
 
 void Game::playAgainSDL(Window window)
 {
-	window.drawplayAgain();
+	window.drawPlayAgain();
 	bool loop = true;
 	while (loop)
 	{
@@ -200,7 +200,6 @@ void Game::playAgainSDL(Window window)
 				if (SDL_BUTTON_LEFT == event.button.button) {
 					int x, y;
 					SDL_GetMouseState(&x, &y);
-					cout << x << " " << y << endl;
 					if (x >= 1280 / 6 + 100 && x <= (1280 / 6 + 100) + 200 && y >= 800 / 5 + 50 && y <= (800 / 5 + 50) + 200) {
 						_playAgain = 1;
 						_table._inGame = 1;
