@@ -59,14 +59,6 @@ Window::Window(int sizeX,int sizeY) {
 	 }
 	 SDL_SetRenderDrawColor(_renderer, _bg.r(), _bg.g(), _bg.b(), _bg.a());
 	 SDL_RenderClear(_renderer);
-	 //drawGrid();
-	 //draw();
-	 //GetKey();
-	 //SDL_RenderPresent(_renderer);
-
-	 //SDL_DestroyWindow(_window);
-
-	 //SDL_Quit();
 	 return;
 }
 
@@ -163,55 +155,3 @@ void Window::drawSurface() {
 	SDL_SetRenderDrawColor(_renderer, 250, 248, 239, 255);
 	SDL_RenderClear(_renderer);
 }
-//void Window::GetKey() {
-//	SDL_Event event;
-//	while (SDL_PollEvent(&event)) {
-//		switch (event.type) {
-//		case SDL_QUIT:
-//			//_Game = 0;
-//			break;
-//		case SDL_KEYDOWN:
-//			switch (event.key.keysym.sym) {
-//			case SDLK_LEFT:
-//				_table.actionLeft();
-//				break;
-//			case SDLK_RIGHT:
-//				_table.actionRight();
-//				break;
-//			case SDLK_UP:
-//				_table.actionUp();
-//				break;
-//			case SDLK_DOWN:
-//				_table.actionDown();
-//				break;
-//			default:
-//				break;
-//			}
-//			break;
-//		case SDL_KEYUP:
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//}
-
-//void Window::HandleInput() {
-//	SDL_Event event;
-//	switch (event.key.keysym.sym) {
-//		case SDLK_LEFT:
-//			_table.actionLeft();
-//			break;
-//		case SDLK_RIGHT:
-//			_table.actionRight();
-//			break;
-//		case SDLK_UP:
-//			_table.actionUp();
-//			break;
-//		case SDLK_DOWN:
-//			_table.actionDown();
-//			break;
-//		default:
-//			break;
-//		}
-//}
