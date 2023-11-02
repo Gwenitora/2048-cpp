@@ -4,6 +4,11 @@ C:\Users\chopp\source\repos\2048-cpp\2048.cpp(8,12): warning C4244: 'argument' 
   game.cpp
   gameObject.cpp
 C:\Users\chopp\source\repos\2048-cpp\gameObject.cpp(143,61): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+  table.cpp
+C:\Users\chopp\source\repos\2048-cpp\table.cpp(52,15): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
+C:\Users\chopp\source\repos\2048-cpp\table.cpp(147,14): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+C:\Users\chopp\source\repos\2048-cpp\table.cpp(174,12): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+  test.cpp
   window.cpp
 C:\Users\chopp\source\repos\2048-cpp\window.cpp(25,40): warning C4838: la conversion de 'int' en 'Uint8' requiert une conversion restrictive
 C:\Users\chopp\source\repos\2048-cpp\window.cpp(25,61): warning C4838: la conversion de 'int' en 'Uint8' requiert une conversion restrictive

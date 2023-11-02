@@ -19,7 +19,7 @@ Table::Table(int sizeX, int sizeY)
 	{
 		_Cells[j].resize(_sizeX);
 	}
-	NextTurn();
+	nextTurn();
 }
 
 Table::Table() : Table( 4, 4 )
@@ -43,7 +43,7 @@ void Table::regen()
 {
 	//Regènere la table(fait un nextTurn pour générer les deux valeurs de base)
 	resetAllCells();
-	NextTurn();
+	nextTurn();
 }
 
 void Table::gen(int number) 
@@ -74,7 +74,7 @@ void Table::getEmptyCells()
 	}
 }
 
-void Table::NextTurn() {
+void Table::nextTurn() {
 	//Appelle gen pour générer sur une ou plusieurs cases(dépend si toutes les cases sont vides ou non
 	//Appelle gameOver et si gameOver renvoie une valeur "vraie"(en l'occurence 1 ou 2)change la valeur de _inGame
 	_played = 0;
@@ -288,7 +288,7 @@ void Table::actionLeft(bool lockedWithoutGen)
 	grip();
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionRight(bool lockedWithoutGen)
@@ -302,7 +302,7 @@ void Table::actionRight(bool lockedWithoutGen)
 	rotateGrid(2);
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionUp(bool lockedWithoutGen)
@@ -316,7 +316,7 @@ void Table::actionUp(bool lockedWithoutGen)
 	rotateGrid(1);
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionDown(bool lockedWithoutGen)
@@ -330,6 +330,6 @@ void Table::actionDown(bool lockedWithoutGen)
 	rotateGrid(3);
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }

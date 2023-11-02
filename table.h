@@ -32,7 +32,7 @@ public:
 	int gameOver();
 	void fusion();
 	void getEmptyCells();
-	void NextTurn();
+	void nextTurn();
 	void actionLeft(bool lockedWithoutGen = false);
 	void actionRight(bool lockedWithoutGen = false);
 	void actionUp(bool lockedWithoutGen = false);
