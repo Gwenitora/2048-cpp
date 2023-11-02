@@ -150,3 +150,12 @@ void Color::setRGBA(int rgb, int a)
 	_g = (rgb % 0x10000) / 0x100;
 	_r = rgb / 0x10000;
 }
+
+bool Color::operator==(Color otherColor)
+{
+	if (_r == otherColor.r() && _g == otherColor.g() && _b == otherColor.b() && _a == otherColor.a())
+	{
+		return true;
+	}
+	return false;
+}

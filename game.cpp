@@ -117,8 +117,8 @@ void Game::GraphicGame() {
 			{
 				if ((_table.getCell(i, j)).getValue() != 0) {
 					GameObject Cell;
-					Cell._x = i;
-					Cell._y = j;
+					Vect2 goToPos(i, j);
+					Cell.goTo(goToPos, false);
 					Cell.setText(to_string((_table.getCell(i, j)).getValue()));
 					_window._objectList.push_back(Cell);
 				}
@@ -160,8 +160,8 @@ void Game::GraphicGame() {
 							{
 								if ((_table.getCell(i, j)).getValue() != 0) {
 									GameObject Cell;
-									Cell._x = i;
-									Cell._y = j;
+									Vect2 goToPos(i, j);
+									Cell.goTo(goToPos, false);
 									Cell.setText(to_string((_table.getCell(i, j)).getValue()));
 									_window._objectList.push_back(Cell);
 								}
