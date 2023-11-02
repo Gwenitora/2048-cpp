@@ -36,6 +36,8 @@ private:
 	chrono::steady_clock::time_point _lastTime;
 
 public:
+	int _x;
+	int _y;
 	GameObject();
 
 	void setText(string str);
