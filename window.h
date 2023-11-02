@@ -19,6 +19,7 @@ public:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 	vector<vector<SDL_Rect>> _grid;
+<<<<<<< HEAD
 	bool _KEYS[322];
 
 	DbColors _dbColors;
@@ -28,10 +29,12 @@ public:
 	Color _border;
 
 public:
+=======
+>>>>>>> 9dafc5de9fabec0c6f9ddcda04d6576632a0bb25
 	Window(int sizeX,int sizeY);
 	Window();
 	void Draw();
+	void DrawPlayAgain();
 	void DrawGrid();
-	void GetKey();
-	void HandleInput();
+	void DrawSurface();
 };

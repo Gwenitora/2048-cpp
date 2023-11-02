@@ -37,5 +37,4 @@ public:
 	void actionRight(bool lockedWithoutGen = false);
 	void actionUp(bool lockedWithoutGen = false);
 	void actionDown(bool lockedWithoutGen = false);
-	//void createCopy();
 };

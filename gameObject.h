@@ -3,6 +3,8 @@
 #include "vect.h"
 #include <iostream>
 #include <chrono>
+#include <SDL.h>
+#include<SDL_ttf.h>
 using namespace std;
 
 class GameObject
@@ -10,7 +12,8 @@ class GameObject
 public:
 	Color _text;
 	Color _bg;
-
+	int _x;
+	int _y;
 private:
 	string _textContent;
 	int _borderRadius;
@@ -50,5 +53,5 @@ public:
 
 	void resetDeltaTime();
 
-	void draw();
+	void draw( SDL_Renderer* renderer);
 };
