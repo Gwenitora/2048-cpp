@@ -1,5 +1,6 @@
 #pragma once
 #include "colors.h"
+#include "dbColors.h"
 #include "vect.h"
 #include <iostream>
 #include <chrono>
@@ -30,10 +31,13 @@ private:
 	Vect2 _targetSize;
 
 	float _pctColor;
+	float _speedColor;
 	Color _text;
 	Color _targetText;
 	Color _bg;
 	Color _targetBg;
+
+	DbColors _dbColor;
 
 	chrono::steady_clock::time_point _lastTime;
 
@@ -50,6 +54,8 @@ public:
 	void setSpeedPos(int maxSpeed, int accel);
 	void setSpeedSize(int maxSpeed);
 	void setSpeedSize(int maxSpeed, int accel);
+
+	void setSpeedColor(float maxSpeed);
 
 	void goTo(Vect2 v, bool animated = true);
 	void moveTo(Vect2 v, bool animated = true);
