@@ -137,11 +137,20 @@ void Window::drawplayAgain() {
 
 void Window::drawScore(Table table) 
 {
-	_rectScore.x = 1280 / 6 + 500;
-	_rectScore.y = 0;
+	_rectScore.x = 1280 / 6 + 400;
+	_rectScore.y = 20;
 	_rectScore.h = 50;
-	_rectScore.w = 100;
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(_Arial, to_string(table.getScore()).c_str(), _Score);
+	_rectScore.w = 30;
+
+	if (table.getScore() > 0)
+	{
+		int modificator = log10(table.getScore()) + 1;
+		_rectScore.w *= modificator;
+	}
+	_rectScore.w += 7 * 30;
+	_rectScore.x -= _rectScore.w * .5f;
+	string score = "score: ";
+	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(_Arial, score.append(to_string(table.getScore()).c_str()).c_str(), _Score);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
 	SDL_SetRenderDrawColor(_renderer, _bg.r(), _bg.g(), _bg.b(), _bg.a());
 	SDL_RenderFillRect(_renderer, &_rectScore);
