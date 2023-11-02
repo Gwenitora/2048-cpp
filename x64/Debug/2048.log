@@ -1,3 +1,0 @@
-﻿  gameObject.cpp
-C:\Users\chopp\source\repos\2048-cpp\gameObject.cpp(147,61): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-  2048.vcxproj -> C:\Users\chopp\source\repos\2048-cpp\x64\Debug\2048.exe
