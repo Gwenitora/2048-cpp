@@ -15,7 +15,11 @@ Window::Window(int sizeX,int sizeY) {
 	 _emptyCell = _dbColors.getNumber();
 	 _border = _dbColors.getBorder();
 	 _textures.resize(11);
-	 TTF_Init();
+	 _path = {
+		 "red_cross.png",
+		 "retry.png"
+	 };
+	 TTF_Init(); 
 	 TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
 	 Color actualColorText;
 	 SDL_Color Black = { actualColorText.r(), actualColorText.g(), actualColorText.b() };
@@ -24,6 +28,11 @@ Window::Window(int sizeX,int sizeY) {
 		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, to_string(int(pow(2, i))).c_str(), Black);
 		 SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
 		 _textures[i-1] = texture;
+	 }
+	 for (int i = 0; i < _path.size(); i++) {
+		 SDL_Surface* image = IMG_Load(_path[i].c_str());
+		 SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, image);
+		 _textures.push_back(texture);
 	 }
 	 SDL_Surface* winSurface;
 	 if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -118,8 +127,10 @@ void Window::DrawPlayAgain() {
 	SDL_RenderFillRect(_renderer, &backPlayAgain);
 	SDL_SetRenderDrawColor(_renderer, 0, 255, 0, 180);
 	SDL_RenderFillRect(_renderer, &playAgain);
-	SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 180);
+	SDL_RenderCopy(_renderer, _textures[12], NULL, &playAgain);
+	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 180);
 	SDL_RenderFillRect(_renderer, &stop);
+	SDL_RenderCopy(_renderer, _textures[11], NULL, &stop);
 	SDL_RenderPresent(_renderer);
 }
 

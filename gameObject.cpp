@@ -126,31 +126,29 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 		_targetBg = _dbColor.getNumber(stoi(_textContent));
 	}
 
-	SDL_Rect cell;
-	cell.x = (1280 / 4) + 20 + (145 * _x);
-	cell.y = (800 / 8) + 20 + (145 * _y);
-	cell.h = 125;
-	cell.w = 125;
-	TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
-	SDL_Color Black = { 0, 0, 0 };
+	_cell.x = (1280 / 4) + 20 + (145 * _x);
+	_cell.y = (800 / 8) + 20 + (145 * _y);
+	_cell.h = 125;
+	_cell.w = 125;
+	//TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
+	//SDL_Color Black = { 0, 0, 0 };
 	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
 	//SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-	SDL_Rect dstrect;
-	dstrect.x = (1280 / 4) + 55 + (145 * _x);
-	dstrect.y = (800 / 8) + 60 + (145 * _y);
-	dstrect.h = 50;
-	dstrect.w = 50;
+	_dstrect.x = (1280 / 4) + 55 + (145 * _x);
+	_dstrect.y = (800 / 8) + 60 + (145 * _y);
+	_dstrect.h = 50;
+	_dstrect.w = 50;
 	if(_textContent != "0")
 	{
 		Color actualColorBg;
 		_bg.mixin(_targetBg, &actualColorBg, _pctColor);
 		SDL_SetRenderDrawColor(renderer, actualColorBg.r(), actualColorBg.g(), actualColorBg.b(), actualColorBg.a());
-		SDL_RenderFillRect(renderer, &cell);
-		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))-1], NULL, &dstrect);
+		SDL_RenderFillRect(renderer, &_cell);
+		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))-1], NULL, &_dstrect);
 	}
 	else {
 		SDL_SetRenderDrawColor(renderer, _border.r(), _border.g(), _border.b(), _border.a());
-		SDL_RenderFillRect(renderer, &cell);
+		SDL_RenderFillRect(renderer, &_cell);
 	}
 	//resetDeltaTime();s
 }

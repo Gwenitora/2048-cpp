@@ -75,6 +75,9 @@
     <ClCompile Include="vect.cpp">
       <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
+    <ClCompile Include="dbColors.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2048.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="vect.h">
       <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="dbColors.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
