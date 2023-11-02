@@ -20,6 +20,7 @@ public:
 	Window(int sizeX,int sizeY);
 	Window();
 	void Draw();
+	void DrawPlayAgain();
 	void DrawGrid();
-	void GetKey();
+	void DrawSurface();
 };

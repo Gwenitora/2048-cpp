@@ -10,6 +10,7 @@ class Game
 	vector<string> _validTexts;
 	bool _playAgain;
 	void PlayAgain();
+	void PlayAgainSDL(Window window);
 	Integration _test;
 	void CmdGame();
 	void GraphicGame();

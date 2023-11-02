@@ -84,6 +84,35 @@ void Window::Draw() {
 	SDL_RenderPresent(_renderer);
 }
 
+void Window::DrawPlayAgain() {
+	SDL_Rect backPlayAgain;
+	backPlayAgain.x = 1280 / 6;
+	backPlayAgain.y = 800 / 5;
+	backPlayAgain.h = 400;
+	backPlayAgain.w = 800;
+	SDL_Rect playAgain;
+	playAgain.x = 1280 / 6 + 100;
+	playAgain.y = 800 / 5 + 50;
+	playAgain.h = 200;
+	playAgain.w = 200;
+	SDL_Rect stop;
+	stop.x = 1280 / 6 + 500;
+	stop.y = 800 / 5 + 50;
+	stop.h = 200;
+	stop.w = 200;
+	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 180);
+	SDL_RenderFillRect(_renderer, &backPlayAgain);
+	SDL_SetRenderDrawColor(_renderer, 0, 255, 0, 180);
+	SDL_RenderFillRect(_renderer, &playAgain);
+	SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 180);
+	SDL_RenderFillRect(_renderer, &stop);
+	SDL_RenderPresent(_renderer);
+}
+
+void Window::DrawSurface() {
+	SDL_SetRenderDrawColor(_renderer, 250, 248, 239, 255);
+	SDL_RenderClear(_renderer);
+}
 //void Window::GetKey() {
 //	SDL_Event event;
 //	while (SDL_PollEvent(&event)) {

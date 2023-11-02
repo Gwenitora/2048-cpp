@@ -106,6 +106,7 @@ void Game::GraphicGame() {
 	int keyDownSDL = 0;
 	while (_playAgain)
 	{
+		_window.DrawSurface();
 		SDL_PumpEvents();
 		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 		_table.ShowGrid();
@@ -178,6 +179,46 @@ void Game::GraphicGame() {
 					}
 				}
 		}
-		PlayAgain();
+		PlayAgainSDL(_window);
 	}
+}
+
+void Game::PlayAgainSDL(Window window)
+{
+	window.DrawPlayAgain();
+	bool loop = true;
+	while (loop)
+	{
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			if (SDL_MOUSEBUTTONDOWN == event.type) {
+				if (SDL_BUTTON_LEFT == event.button.button) {
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+					cout << x << " " << y << endl;
+					if (x >= 1280 / 6 + 100 && x <= (1280 / 6 + 100) + 200 && y >= 800 / 5 + 50 && y <= (800 / 5 + 50) + 200) {
+						_playAgain = 1;
+						_table._inGame = 1;
+						_table.Regen();
+						loop = false;
+						break;
+					}
+					else if (x >= 1280 / 6 + 500 && x <= (1280 / 6 + 500) + 200 && y >= 800 / 5 + 50 && y <= (800 / 5 + 50) + 200) {
+						_playAgain = 0;
+						loop = false;
+						break;
+					}
+				}
+			}
+		}
+	}
+	/*if (_text == _validTexts[0] || _text == _validTexts[1])
+	{
+		_playAgain = true;
+		_table._inGame = 1;
+		_table.Regen();
+	}
+	else {
+		_playAgain = false;
+	}*/
 }
