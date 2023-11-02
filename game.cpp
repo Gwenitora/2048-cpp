@@ -13,7 +13,7 @@ Game::Game()
 {
 	_validTexts = { "y", "yes" };
 	_playAgain = true;
-	cout << "Do you want to play on the console?(y/n)"<<endl;
+	cout << "Do you want to play on the console?(y/n)" << endl;
 	cin >> _text;
 	if (_text == _validTexts[0] || _text == _validTexts[1])
 	{
@@ -24,9 +24,9 @@ Game::Game()
 	}
 }
 
-void Game::PlayAgain() 
+void Game::PlayAgain()
 {
-	cout <<endl<< "Do you want to play again?(y/n) ";
+	cout << endl << "Do you want to play again?(y/n) ";
 	cin >> _text;
 	if (_text == _validTexts[0] || _text == _validTexts[1])
 	{
@@ -101,9 +101,11 @@ void Game::CmdGame() {
 	}
 }
 
-void Game::GraphicGame() { 
+void Game::GraphicGame() {
 	Window _window;
 	int keyDownSDL = 0;
+	int quit = 0;
+	vector<vector<Cell>> tableSDL;
 	while (_playAgain)
 	{
 		_window.DrawSurface();
@@ -111,53 +113,47 @@ void Game::GraphicGame() {
 		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 		_table.ShowGrid();
 		_window.DrawGrid();
+		tableSDL.resize(4);
 		for (int j = 0; j < 4; j++)
 		{
+			tableSDL[j].resize(4);
 			for (int i = 0; i < 4; i++)
 			{
-				if ((_table.getCell(i, j)).getValue() != 0) {
-					GameObject Cell;
-					Vect2 goToPos(i, j);
-					Cell.goTo(goToPos, false);
-					Cell.setText(to_string((_table.getCell(i, j)).getValue()));
-					_window._objectList.push_back(Cell);
-				}
+				Cell cell = _table.getCell(i, j);
+				tableSDL[j][i] = cell;
+				cell.setXYGameObject(i, j);
+				cell.setTextGameObject(to_string((_table.getCell(i, j)).getValue()));
+				_window._objectList.push_back(cell);
 			}
 		}
 		_window.Draw();
 		while (_table._inGame)
 		{
-				SDL_Event event;
-				while (SDL_PollEvent(&event)) {
-					switch (event.type) {
-					case SDL_QUIT:
-						//_Game = 0;
+			SDL_Event event;
+			while (SDL_PollEvent(&event)) {
+				switch (event.type) {
+				case SDL_QUIT:
+					_table._inGame = 0;
+					_playAgain = 0;
+					quit = 1;
+					break;
+				case SDL_KEYDOWN:
+					if (keyDownSDL) {
 						break;
-					case SDL_KEYDOWN:
-						if (keyDownSDL) {
-							break;
-						}
-						keyDownSDL = 1;
-						switch (event.key.keysym.sym) {
-						case SDLK_LEFT:
-							_table.actionLeft();
-							break;
-						case SDLK_RIGHT:
-							_table.actionRight();
-							break;
-						case SDLK_UP:
-							_table.actionUp();
-							break;
-						case SDLK_DOWN:
-							_table.actionDown();
-							break;
-						default:
-							break;
-						}
-						_table.ShowGrid();
+					}
+					keyDownSDL = 1;
+					switch (event.key.keysym.sym) {
+					case SDLK_LEFT:
+						_table.actionLeft();
 						break;
-					case SDL_KEYUP:
-						keyDownSDL = 0;
+					case SDLK_RIGHT:
+						_table.actionRight();
+						break;
+					case SDLK_UP:
+						_table.actionUp();
+						break;
+					case SDLK_DOWN:
+						_table.actionDown();
 						break;
 					default:
 						break;
@@ -166,20 +162,26 @@ void Game::GraphicGame() {
 					{
 						for (int i = 0; i < 4; i++)
 						{
-							if ((_table.getCell(i, j)).getValue() != 0) {
-								GameObject Cell;
-								Vect2 goToPos(i, j);
-								Cell.goTo(goToPos, false);
-								Cell.setText(to_string((_table.getCell(i, j)).getValue()));
-								_window._objectList.push_back(Cell);
-							}
+							tableSDL[j][i].setXYGameObject(i, j);
+							tableSDL[j][i].setTextGameObject(to_string((_table.getCell(i, j)).getValue()));
+							_window._objectList.push_back(tableSDL[j][i]);
 						}
 					}
-					_window.DrawGrid();
+					_table.ShowGrid();
 					_window.Draw();
+					break;
+				case SDL_KEYUP:
+					keyDownSDL = 0;
+					break;
+				default:
+					break;
 				}
+			}
 		}
-		PlayAgainSDL(_window);
+		if (!quit)
+		{
+			PlayAgainSDL(_window);
+		}
 	}
 }
 
@@ -212,13 +214,4 @@ void Game::PlayAgainSDL(Window window)
 			}
 		}
 	}
-	/*if (_text == _validTexts[0] || _text == _validTexts[1])
-	{
-		_playAgain = true;
-		_table._inGame = 1;
-		_table.Regen();
-	}
-	else {
-		_playAgain = false;
-	}*/
 }

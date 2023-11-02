@@ -6,6 +6,8 @@
 #include <chrono>
 #include <SDL.h>
 #include<SDL_ttf.h>
+#include <vector>
+#include <string>
 using namespace std;
 
 class GameObject
@@ -40,12 +42,14 @@ private:
 	chrono::steady_clock::time_point _lastTime;
 
 public:
+	int _x;
+	int _y;
 	GameObject();
 
 	void setText(string str);
 
 	void setBorderRadius(int borderRadius);
-
+	void setPos(int x, int y);
 	void setSpeedPos(int maxSpeed);
 	void setSpeedPos(int maxSpeed, int accel);
 	void setSpeedSize(int maxSpeed);
@@ -60,5 +64,5 @@ public:
 
 	void resetDeltaTime();
 
-	void draw( SDL_Renderer* renderer);
+	void draw( SDL_Renderer* renderer, vector<SDL_Texture*> textures);
 };

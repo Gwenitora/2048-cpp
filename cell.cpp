@@ -32,3 +32,16 @@ void Cell::genereNew()
         _value = 4;
     }
 }
+void Cell::setXYGameObject(int x,int y)
+{
+    setPos(x, y);
+}
+void Cell::setTextGameObject(string str)
+{
+    setText(str);
+}
+
+void Cell::drawGameObject(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
+{
+    draw(renderer, textures);
+}

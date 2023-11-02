@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <vector>
+#include <string>
 using namespace std;
 
 Window::Window(int sizeX,int sizeY) {
@@ -10,13 +11,18 @@ Window::Window(int sizeX,int sizeY) {
 	 _sizeY = sizeY;
 	 _window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _sizeX, _sizeY, SDL_WINDOW_OPENGL);
 	 _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-
 	 _bg = _dbColors.getBackground();
 	 _emptyCell = _dbColors.getNumber();
 	 _border = _dbColors.getBorder();
-
-	 for (int i = 0; i < 322; i++) {
-		 _KEYS[i] = false;
+	 _textures.resize(11);
+	 TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
+	 Color actualColorText;
+	 SDL_Color Black = { actualColorText.r(), actualColorText.g(), actualColorText.b() };
+	 for (int i = 1; i < 12; i++)
+	 {
+		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, to_string(pow(2, i)).c_str(), Black);
+		 SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
+		 _textures[i-1] = texture;
 	 }
 	 SDL_Surface* winSurface;
 	 if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -87,7 +93,7 @@ void Window::DrawGrid() {
 void Window::Draw() {
 	for (int i = 0; i < _objectList.size(); i++)
 	{
-		_objectList[i].draw( _renderer);
+		_objectList[i].drawGameObject( _renderer, _textures);
 	}
 	_objectList.clear();
 	SDL_RenderPresent(_renderer);

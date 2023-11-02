@@ -106,27 +106,36 @@ void GameObject::resetDeltaTime()
 	_lastTime = chrono::steady_clock::now();
 }
 
-void GameObject::draw(SDL_Renderer* renderer)
+void GameObject::setPos(int x, int y) 
+{
+	_x = x;
+	_y = y;
+}
+
+void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 {
 	//int deltaTime = chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - _lastTime).count();
 	// calcul puis draw ici !!!
 	SDL_Rect cell;
-	cell.x = (1280 / 4) + 20 + (145 * _pos.x());
-	cell.y = (800 / 8) + 20 + (145 * _pos.y());
+	cell.x = (1280 / 4) + 20 + (145 * _x);
+	cell.y = (800 / 8) + 20 + (145 * _y);
 	cell.h = 125;
 	cell.w = 125;
-	SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
-	SDL_RenderFillRect(renderer, &cell);
 	TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
 	SDL_Color Black = { 0, 0, 0 };
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
+	//SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 	SDL_Rect dstrect;
-	dstrect.x = (1280 / 4) + 55 + (145 * _pos.x());
-	dstrect.y = (800 / 8) + 60 + (145 * _pos.y());
+	dstrect.x = (1280 / 4) + 55 + (145 * _x);
+	dstrect.y = (800 / 8) + 60 + (145 * _y);
 	dstrect.h = 50;
 	dstrect.w = 50;
-	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
-	//SDL_RenderPresent(renderer);
-	//resetDeltaTime();
+	if(_textContent != "0")
+	{
+		SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
+		SDL_RenderFillRect(renderer, &cell);
+		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))], NULL, &dstrect);
+	}
+	//resetDeltaTime();s
 }
+
