@@ -38,7 +38,7 @@ private:
 	Color _targetBg;
 
 	DbColors _dbColor;
-
+	Color _border;
 	chrono::steady_clock::time_point _lastTime;
 
 public:
