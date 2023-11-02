@@ -100,7 +100,7 @@ void Window::draw() {
 	SDL_RenderPresent(_renderer);
 }
 
-void Window::drawplayAgain() {
+void Window::drawPlayAgain() {
 	SDL_Rect backPlayAgain;
 	backPlayAgain.x = 1280 / 6;
 	backPlayAgain.y = 800 / 5;
