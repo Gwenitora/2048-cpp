@@ -22,10 +22,10 @@ Window::Window(int sizeX,int sizeY) {
 	 TTF_Init(); 
 	 _Arial = TTF_OpenFont("Arial/arial.ttf", 48);
 	 _Score = { 0,0,0 };
-	 Color actualColorText;
-	 SDL_Color Black = { actualColorText.r(), actualColorText.g(), actualColorText.b() };
 	 for (int i = 1; i < 12; i++)
 	 {
+		 Color actualColorText = _dbColors.getText(int(pow(2, i)));
+		 SDL_Color Black = { actualColorText.r(), actualColorText.g(), actualColorText.b() };
 		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(_Arial, to_string(int(pow(2, i))).c_str(), Black);
 		 SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
 		 _textures[i-1] = texture;
