@@ -17,14 +17,14 @@ Game::Game()
 	cin >> _text;
 	if (_text == _validTexts[0] || _text == _validTexts[1])
 	{
-		CmdGame();
+		cmdGame();
 	}
 	else {
-		GraphicGame();
+		graphicGame();
 	}
 }
 
-void Game::PlayAgain()
+void Game::playAgain()
 {
 	cout << endl << "Do you want to play again?(y/n) ";
 	cin >> _text;
@@ -32,14 +32,14 @@ void Game::PlayAgain()
 	{
 		_playAgain = true;
 		_table._inGame = 1;
-		_table.Regen();
+		_table.regen();
 	}
 	else {
 		_playAgain = false;
 	}
 }
 
-void Game::CmdGame() {
+void Game::cmdGame() {
 	//if (!_test.testing())
 	//{
 	//	return;
@@ -48,7 +48,7 @@ void Game::CmdGame() {
 	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
 	while (_playAgain)
 	{
-		_table.ShowGrid();
+		_table.showGrid();
 		while (_table._inGame)
 		{
 			while (!KeyDowned)
@@ -76,7 +76,7 @@ void Game::CmdGame() {
 				}
 			}
 			//cout << chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - timer).count() << endl;
-			_table.ShowGrid();
+			_table.showGrid();
 			while (KeyDowned)
 			{
 				if ((GetKeyState(VK_UP) == 0 || GetKeyState(VK_UP) == 1) && KeyDowned == 1)
@@ -97,11 +97,11 @@ void Game::CmdGame() {
 				}
 			}
 		}
-		PlayAgain();
+		playAgain();
 	}
 }
 
-void Game::GraphicGame() {
+void Game::graphicGame() {
 	Window _window;
 	int keyDownSDL = 0;
 	int quit = 0;
@@ -109,11 +109,11 @@ void Game::GraphicGame() {
 	while (_playAgain)
 	{
 		keyDownSDL = 0;
-		_window.DrawSurface();
+		_window.drawSurface();
 		SDL_PumpEvents();
 		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
-		_table.ShowGrid();
-		_window.DrawGrid();
+		_table.showGrid();
+		_window.drawGrid();
 		tableSDL.resize(4);
 		for (int j = 0; j < 4; j++)
 		{
@@ -127,7 +127,7 @@ void Game::GraphicGame() {
 				_window._objectList.push_back(cell);
 			}
 		}
-		_window.Draw();
+		_window.draw();
 		while (_table._inGame)
 		{
 			SDL_Event event;
@@ -168,8 +168,8 @@ void Game::GraphicGame() {
 							_window._objectList.push_back(tableSDL[j][i]);
 						}
 					}
-					_table.ShowGrid();
-					_window.Draw();
+					_table.showGrid();
+					_window.draw();
 					break;
 				case SDL_KEYUP:
 					keyDownSDL = 0;
@@ -181,14 +181,14 @@ void Game::GraphicGame() {
 		}
 		if (!quit)
 		{
-			PlayAgainSDL(_window);
+			playAgainSDL(_window);
 		}
 	}
 }
 
-void Game::PlayAgainSDL(Window window)
+void Game::playAgainSDL(Window window)
 {
-	window.DrawPlayAgain();
+	window.drawplayAgain();
 	bool loop = true;
 	while (loop)
 	{
@@ -202,7 +202,7 @@ void Game::PlayAgainSDL(Window window)
 					if (x >= 1280 / 6 + 100 && x <= (1280 / 6 + 100) + 200 && y >= 800 / 5 + 50 && y <= (800 / 5 + 50) + 200) {
 						_playAgain = 1;
 						_table._inGame = 1;
-						_table.Regen();
+						_table.regen();
 						loop = false;
 						break;
 					}

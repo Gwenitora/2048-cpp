@@ -130,10 +130,6 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 	_cell.y = (800 / 8) + 20 + (145 * _y);
 	_cell.h = 125;
 	_cell.w = 125;
-	//TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
-	//SDL_Color Black = { 0, 0, 0 };
-	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
-	//SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 	_dstrect.x = (1280 / 4) + 55 + (145 * _x);
 	_dstrect.y = (800 / 8) + 60 + (145 * _y);
 	_dstrect.h = 50;

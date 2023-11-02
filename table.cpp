@@ -39,14 +39,14 @@ void Table::resetAllCells()
 	}
 }
 
-void Table::Regen()
+void Table::regen()
 {
 	//Regènere la table(fait un nextTurn pour générer les deux valeurs de base)
 	resetAllCells();
 	NextTurn();
 }
 
-void Table::Gen(int number) 
+void Table::gen(int number) 
 {
 	//Appelle genereNew sur une case vide au hasard(ou plusieurs,dépend de la valeur number)
 	int listSize = _list.size();
@@ -80,10 +80,10 @@ void Table::NextTurn() {
 	_played = 0;
 	getEmptyCells();
 	if (_lengthAllCoords == _list.size()) {
-		Gen(2);
+		gen(2);
 	}
 	else {
-		Gen(1);
+		gen(1);
 	}
 	int isTheGameOver = gameOver();
 	if (isTheGameOver) {
@@ -139,7 +139,7 @@ int Table::gameOver() {
 	return 0;
 }
 
-void Table::ShowGrid()
+void Table::showGrid()
 {
 	//crée une grid custom pour que peu importe la taille de la grille(qu'elle soit carré ou non)
 	//l'espace à l'intérieur des cases soit le même peu importe le chiffre(ou nombre) à l'intérieur de celles-ci
@@ -216,7 +216,7 @@ Cell Table::getCell(int x, int y)
 	return _Cells[y][x];
 }
 
-void Table::RotateGrid(int repeat)
+void Table::rotateGrid(int repeat)
 {
 	//tourne la grille dans le sens horaire
 	Table actual = Table(_sizeX, _sizeY);
@@ -295,11 +295,11 @@ void Table::actionRight(bool lockedWithoutGen)
 {
 	//Pareil mais vers la droite
 	//on fait tourner la grille de 180°
-	RotateGrid(2);
+	rotateGrid(2);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(2);
+	rotateGrid(2);
 	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
@@ -309,11 +309,11 @@ void Table::actionUp(bool lockedWithoutGen)
 {
 	//Pareil mais vers le haut
 	//on fait tourner la grille de 270°
-	RotateGrid(3);
+	rotateGrid(3);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(1);
+	rotateGrid(1);
 	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
@@ -323,11 +323,11 @@ void Table::actionDown(bool lockedWithoutGen)
 {
 	//Pareil mais vers le bas
 	//on fait tourner la grille de 90°
-	RotateGrid(1);
+	rotateGrid(1);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(3);
+	rotateGrid(3);
 	if (!lockedWithoutGen && _played)
 	{
 		NextTurn();
