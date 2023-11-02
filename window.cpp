@@ -10,7 +10,6 @@ Window::Window(int sizeX,int sizeY) {
 	 _sizeY = sizeY;
 	 _window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _sizeX, _sizeY, SDL_WINDOW_OPENGL);
 	 _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-<<<<<<< HEAD
 
 	 _bg = _dbColors.getBackground();
 	 _emptyCell = _dbColors.getNumber();
@@ -19,8 +18,6 @@ Window::Window(int sizeX,int sizeY) {
 	 for (int i = 0; i < 322; i++) {
 		 _KEYS[i] = false;
 	 }
-=======
->>>>>>> 9dafc5de9fabec0c6f9ddcda04d6576632a0bb25
 	 SDL_Surface* winSurface;
 	 if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		 cout << "Error initializing SDL: " << SDL_GetError() << endl;
