@@ -15,12 +15,13 @@ Window::Window(int sizeX,int sizeY) {
 	 _emptyCell = _dbColors.getNumber();
 	 _border = _dbColors.getBorder();
 	 _textures.resize(11);
+	 TTF_Init();
 	 TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
 	 Color actualColorText;
 	 SDL_Color Black = { actualColorText.r(), actualColorText.g(), actualColorText.b() };
 	 for (int i = 1; i < 12; i++)
 	 {
-		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, to_string(pow(2, i)).c_str(), Black);
+		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, to_string(int(pow(2, i))).c_str(), Black);
 		 SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
 		 _textures[i-1] = texture;
 	 }
@@ -30,7 +31,6 @@ Window::Window(int sizeX,int sizeY) {
 		 system("pause");
 		 return;
 	 }
-	 TTF_Init();
 	 _grid.resize(4);
 	 for (int i = 0; i < 4; i++) {
 		 _grid[i].resize(4);
@@ -49,7 +49,6 @@ Window::Window(int sizeX,int sizeY) {
 	 }
 	 SDL_SetRenderDrawColor(_renderer, _bg.r(), _bg.g(), _bg.b(), _bg.a());
 	 SDL_RenderClear(_renderer);
-
 	 //DrawGrid();
 	 //Draw();
 	 //GetKey();

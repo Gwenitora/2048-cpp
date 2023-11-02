@@ -6,6 +6,7 @@ using namespace std;
 
 GameObject::GameObject()
 {
+	_border = _dbColor.getBorder();
 	_textContent = "";
 	_borderRadius = 0;
 
@@ -134,7 +135,11 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 	{
 		SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
 		SDL_RenderFillRect(renderer, &cell);
-		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))], NULL, &dstrect);
+		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))-1], NULL, &dstrect);
+	}
+	else {
+		SDL_SetRenderDrawColor(renderer, _border.r(), _border.g(), _border.b(), _border.a());
+		SDL_RenderFillRect(renderer, &cell);
 	}
 	//resetDeltaTime();s
 }
