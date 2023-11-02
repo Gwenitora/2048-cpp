@@ -9,6 +9,17 @@ Window::Window(int sizeX,int sizeY) {
 	 _sizeY = sizeY;
 	 _window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _sizeX, _sizeY, SDL_WINDOW_OPENGL);
 	 _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+	 vector<SDL_Texture*> textures;
+	 textures.resize(12);
+	 TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
+	 SDL_Color Black = { 0, 0, 0 };
+	 SDL_Color White = { 255, 255, 255 };
+	 //SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
+	 //for (int i = 0; i < 12; i++)
+	 //{
+		// SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
+		// textures[i] = texture;
+	 //}
 	 SDL_Surface* winSurface;
 	 if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		 cout << "Error initializing SDL: " << SDL_GetError() << endl;
@@ -78,7 +89,7 @@ void Window::DrawGrid() {
 void Window::Draw() {
 	for (int i = 0; i < _objectList.size(); i++)
 	{
-		_objectList[i].draw( _renderer);
+		_objectList[i].drawGameObject( _renderer);
 	}
 	_objectList.clear();
 	SDL_RenderPresent(_renderer);

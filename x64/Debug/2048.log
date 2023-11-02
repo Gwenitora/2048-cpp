@@ -1,6 +1,2 @@
-﻿  2048.cpp
-C:\Users\chopp\source\repos\2048-cpp\2048.cpp(8,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-  game.cpp
-  window.cpp
-  Génération de code en cours...
+﻿  game.cpp
   2048.vcxproj -> C:\Users\chopp\source\repos\2048-cpp\x64\Debug\2048.exe

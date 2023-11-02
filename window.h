@@ -13,7 +13,7 @@ public:
 	Table _table;
 	int _sizeX;
 	int _sizeY;
-	vector<GameObject> _objectList;
+	vector<Cell> _objectList;
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 	vector<vector<SDL_Rect>> _grid;

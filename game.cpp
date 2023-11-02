@@ -104,6 +104,8 @@ void Game::CmdGame() {
 void Game::GraphicGame() { 
 	Window _window;
 	int keyDownSDL = 0;
+	int quit = 0;
+	vector<vector<Cell>> tableSDL;
 	while (_playAgain)
 	{
 		_window.DrawSurface();
@@ -111,17 +113,17 @@ void Game::GraphicGame() {
 		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 		_table.ShowGrid();
 		_window.DrawGrid();
+		tableSDL.resize(4);
 		for (int j = 0; j < 4; j++)
 		{
+			tableSDL[j].resize(4);
 			for (int i = 0; i < 4; i++)
 			{
-				if ((_table.getCell(i, j)).getValue() != 0) {
-					GameObject Cell;
-					Cell._x = i;
-					Cell._y = j;
-					Cell.setText(to_string((_table.getCell(i, j)).getValue()));
-					_window._objectList.push_back(Cell);
-				}
+				Cell cell = _table.getCell(i, j);
+				tableSDL[j][i] = cell;
+				cell.setXYGameObject(i, j);
+				cell.setTextGameObject(to_string((_table.getCell(i, j)).getValue()));
+				_window._objectList.push_back(cell);
 			}
 		}
 		_window.Draw();
@@ -131,7 +133,9 @@ void Game::GraphicGame() {
 				while (SDL_PollEvent(&event)) {
 					switch (event.type) {
 					case SDL_QUIT:
-						//_Game = 0;
+						_table._inGame = 0;
+						_playAgain = 0;
+						quit = 1;
 						break;
 					case SDL_KEYDOWN:
 						if (keyDownSDL) {
@@ -158,17 +162,12 @@ void Game::GraphicGame() {
 						{
 							for (int i = 0; i < 4; i++)
 							{
-								if ((_table.getCell(i, j)).getValue() != 0) {
-									GameObject Cell;
-									Cell._x = i;
-									Cell._y = j;
-									Cell.setText(to_string((_table.getCell(i, j)).getValue()));
-									_window._objectList.push_back(Cell);
-								}
+								tableSDL[j][i].setXYGameObject(i, j);
+								tableSDL[j][i].setTextGameObject(to_string((_table.getCell(i, j)).getValue()));
+								_window._objectList.push_back(tableSDL[j][i]);
 							}
 						}
 						_table.ShowGrid();
-						_window.DrawGrid();
 						_window.Draw();
 						break;
 					case SDL_KEYUP:
@@ -179,7 +178,10 @@ void Game::GraphicGame() {
 					}
 				}
 		}
-		PlayAgainSDL(_window);
+		if(!quit)
+		{
+			PlayAgainSDL(_window);
+		}
 	}
 }
 
@@ -212,13 +214,4 @@ void Game::PlayAgainSDL(Window window)
 			}
 		}
 	}
-	/*if (_text == _validTexts[0] || _text == _validTexts[1])
-	{
-		_playAgain = true;
-		_table._inGame = 1;
-		_table.Regen();
-	}
-	else {
-		_playAgain = false;
-	}*/
 }

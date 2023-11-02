@@ -87,6 +87,12 @@ void GameObject::resetDeltaTime()
 	_lastTime = chrono::steady_clock::now();
 }
 
+void GameObject::setPos(int x, int y) 
+{
+	_x = x;
+	_y = y;
+}
+
 void GameObject::draw(SDL_Renderer* renderer)
 {
 	//int deltaTime = chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - _lastTime).count();
@@ -107,7 +113,10 @@ void GameObject::draw(SDL_Renderer* renderer)
 	dstrect.y = (800 / 8) + 60 + (145 * _y);
 	dstrect.h = 50;
 	dstrect.w = 50;
-	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+	if(_textContent != "0")
+	{
+		SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+	}
 	//SDL_RenderPresent(renderer);
 	//resetDeltaTime();
 }
