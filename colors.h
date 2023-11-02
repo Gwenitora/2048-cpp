@@ -43,4 +43,5 @@ public:
 	void setRGBA(int r, int g, int b, int a);
 
 	bool operator==(Color otherColor);
+	bool operator!=(Color otherColor);
 };

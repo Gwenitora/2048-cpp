@@ -155,7 +155,16 @@ bool Color::operator==(Color otherColor)
 {
 	if (_r == otherColor.r() && _g == otherColor.g() && _b == otherColor.b() && _a == otherColor.a())
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return true;
+}
+
+bool Color::operator!=(Color otherColor)
+{
+	if (_r == otherColor.r() && _g == otherColor.g() && _b == otherColor.b() && _a == otherColor.a())
+	{
+		return !false;
+	}
+	return !true;
 }

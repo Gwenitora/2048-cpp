@@ -1,5 +1,7 @@
 #include "gameObject.h"
 #include <chrono>
+#include <iostream>
+#include <string>
 using namespace std;
 
 GameObject::GameObject()
@@ -9,6 +11,18 @@ GameObject::GameObject()
 
 	_size.setIfOnlyInAbs(true);
 	_targetSize.setIfOnlyInAbs(true);
+
+	_speedSize = 0;
+	_speedPos = 0;
+	_speedColor = 0;
+	_pctColor = 0;
+
+	_text = _dbColor.getNumber(0);
+	_bg = _dbColor.getNumber(0);
+	_targetText = _dbColor.getNumber(0);
+	_targetBg = _dbColor.getNumber(0);
+
+	setSpeedColor(.5f);
 
 	resetDeltaTime();
 }
@@ -43,6 +57,11 @@ void GameObject::setSpeedSize(int maxSpeed, int accel)
 {
 	setSpeedSize(maxSpeed);
 	_accelSize = accel;
+}
+
+void GameObject::setSpeedColor(float maxSpeed)
+{
+	_speedColor = maxSpeed;
 }
 
 void GameObject::goTo(Vect2 v, bool animated)

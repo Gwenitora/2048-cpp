@@ -154,22 +154,7 @@ void Game::GraphicGame() {
 						default:
 							break;
 						}
-						for (int j = 0; j < 4; j++)
-						{
-							for (int i = 0; i < 4; i++)
-							{
-								if ((_table.getCell(i, j)).getValue() != 0) {
-									GameObject Cell;
-									Vect2 goToPos(i, j);
-									Cell.goTo(goToPos, false);
-									Cell.setText(to_string((_table.getCell(i, j)).getValue()));
-									_window._objectList.push_back(Cell);
-								}
-							}
-						}
 						_table.ShowGrid();
-						_window.DrawGrid();
-						_window.Draw();
 						break;
 					case SDL_KEYUP:
 						keyDownSDL = 0;
@@ -177,6 +162,21 @@ void Game::GraphicGame() {
 					default:
 						break;
 					}
+					for (int j = 0; j < 4; j++)
+					{
+						for (int i = 0; i < 4; i++)
+						{
+							if ((_table.getCell(i, j)).getValue() != 0) {
+								GameObject Cell;
+								Vect2 goToPos(i, j);
+								Cell.goTo(goToPos, false);
+								Cell.setText(to_string((_table.getCell(i, j)).getValue()));
+								_window._objectList.push_back(Cell);
+							}
+						}
+					}
+					_window.DrawGrid();
+					_window.Draw();
 				}
 		}
 		PlayAgainSDL(_window);
