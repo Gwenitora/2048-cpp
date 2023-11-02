@@ -117,7 +117,6 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 		SDL_RenderFillRect(renderer, &cell);
 		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))], NULL, &dstrect);
 	}
-	//SDL_RenderPresent(renderer);
 	//resetDeltaTime();s
 }
 
