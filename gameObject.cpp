@@ -107,31 +107,21 @@ void GameObject::resetDeltaTime()
 	_lastTime = chrono::steady_clock::now();
 }
 
-void GameObject::setPos(int x, int y) 
-{
-	_x = x;
-	_y = y;
-}
-
 void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 {
 	//int deltaTime = chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - _lastTime).count();
 	// calcul puis draw ici !!!
-	cout << endl << stoi(_textContent) << " : ";
-	_targetBg.printColor(true);
-	cout << ": ";
-	_targetBg.printColorHex(true);
 	if (_targetBg != _dbColor.getNumber(stoi(_textContent)))
 	{
 		_targetBg = _dbColor.getNumber(stoi(_textContent));
 	}
 
-	_cell.x = (1280 / 4) + 20 + (145 * _x);
-	_cell.y = (800 / 8) + 20 + (145 * _y);
+	_cell.x = (1280 / 4) + 20 + (145 * _pos.x());
+	_cell.y = (800 / 8) + 20 + (145 * _pos.y());
 	_cell.h = 125;
 	_cell.w = 125;
-	_dstrect.x = (1280 / 4) + 55 + (145 * _x);
-	_dstrect.y = (800 / 8) + 60 + (145 * _y);
+	_dstrect.x = (1280 / 4) + 55 + (145 * _pos.x());
+	_dstrect.y = (800 / 8) + 60 + (145 * _pos.y());
 	_dstrect.h = 50;
 	_dstrect.w = 50;
 	if(_textContent != "0")

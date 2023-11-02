@@ -43,14 +43,11 @@ private:
 	chrono::steady_clock::time_point _lastTime;
 
 public:
-	int _x;
-	int _y;
 	GameObject();
 
 	void setText(string str);
 
 	void setBorderRadius(int borderRadius);
-	void setPos(int x, int y);
 	void setSpeedPos(int maxSpeed);
 	void setSpeedPos(int maxSpeed, int accel);
 	void setSpeedSize(int maxSpeed);
