@@ -141,7 +141,6 @@
     <ClCompile Include="dbColors.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
-    <ClCompile Include="graphic.cpp" />
     <ClCompile Include="table.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="vect.cpp" />
@@ -155,7 +154,6 @@
     <ClInclude Include="dbColors.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
-    <ClInclude Include="graphic.h" />
     <ClInclude Include="table.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="vect.h" />

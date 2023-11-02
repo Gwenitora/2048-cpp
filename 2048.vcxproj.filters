@@ -54,9 +54,6 @@
     <ClCompile Include="cell.cpp">
       <Filter>Fichiers sources\Game\Table</Filter>
     </ClCompile>
-    <ClCompile Include="graphic.cpp">
-      <Filter>Fichiers sources\Game\Graphic</Filter>
-    </ClCompile>
     <ClCompile Include="cmd.cpp">
       <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
@@ -93,9 +90,6 @@
       <Filter>Fichiers d%27en-tête\Game\Table</Filter>
     </ClInclude>
     <ClInclude Include="cmd.h">
-      <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="graphic.h">
       <Filter>Fichiers d%27en-tête\Game\Graphic</Filter>
     </ClInclude>
     <ClInclude Include="test.h">
