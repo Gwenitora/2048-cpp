@@ -36,7 +36,8 @@ private:
 	Color _targetText;
 	Color _bg;
 	Color _targetBg;
-
+	SDL_Rect _cell;
+	SDL_Rect _dstrect;
 	DbColors _dbColor;
 	Color _border;
 	chrono::steady_clock::time_point _lastTime;
