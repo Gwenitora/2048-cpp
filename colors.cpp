@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Color::Color() : Color(0, 1)
+Color::Color() : Color(0, 255)
 {
 }
 
@@ -65,7 +65,7 @@ void Color::printColor(bool includeAlpha)
 	{
 		cout << ", " << _a;
 	}
-	cout << "}";
+	cout << "} ";
 }
 
 Color Color::mixin(Color otherCol, float pct)

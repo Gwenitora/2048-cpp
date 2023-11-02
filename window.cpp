@@ -1,4 +1,5 @@
 #include "window.h"
+#include "colors.h"
 #include <iostream>
 #include <SDL.h>
 #include <vector>
@@ -9,6 +10,11 @@ Window::Window(int sizeX,int sizeY) {
 	 _sizeY = sizeY;
 	 _window = SDL_CreateWindow("Menu", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _sizeX, _sizeY, SDL_WINDOW_OPENGL);
 	 _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+
+	 _bg = _dbColors.getBackground();
+	 _emptyCell = _dbColors.getNumber();
+	 _border = _dbColors.getBorder();
+
 	 for (int i = 0; i < 322; i++) {
 		 _KEYS[i] = false;
 	 }
@@ -34,7 +40,7 @@ Window::Window(int sizeX,int sizeY) {
 		 system("pause");
 		 return;
 	 }
-	 SDL_SetRenderDrawColor(_renderer, 250, 248, 239, 255);
+	 SDL_SetRenderDrawColor(_renderer, _bg.r(), _bg.g(), _bg.b(), _bg.a());
 	 SDL_RenderClear(_renderer);
 
 	 DrawGrid();
@@ -66,9 +72,9 @@ void Window::DrawGrid() {
 	backGrid.y = 800 / 8;
 	backGrid.h = 600;
 	backGrid.w = 600;
-	SDL_SetRenderDrawColor(_renderer, 205, 193, 180, 255);
+	SDL_SetRenderDrawColor(_renderer, _emptyCell.r(), _emptyCell.g(), _emptyCell.b(), _emptyCell.a());
 	SDL_RenderFillRect(_renderer, &backGrid);
-	SDL_SetRenderDrawColor(_renderer, 187, 173, 160, 255);
+	SDL_SetRenderDrawColor(_renderer, _border.r(), _border.g(), _border.b(), _border.a());
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 4; i++) {
 			SDL_RenderFillRect(_renderer, &_grid[j][i]);
