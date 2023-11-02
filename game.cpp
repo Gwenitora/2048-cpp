@@ -108,6 +108,7 @@ void Game::GraphicGame() {
 	vector<vector<Cell>> tableSDL;
 	while (_playAgain)
 	{
+		keyDownSDL = 0;
 		_window.DrawSurface();
 		SDL_PumpEvents();
 		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
