@@ -34,7 +34,8 @@ void Cell::genereNew()
 }
 void Cell::setXYGameObject(int x,int y)
 {
-    setPos(x, y);
+    Vect2 vect(x, y);
+    goTo(vect, false);
 }
 void Cell::setTextGameObject(string str)
 {

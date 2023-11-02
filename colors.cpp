@@ -153,18 +153,28 @@ void Color::setRGBA(int rgb, int a)
 
 bool Color::operator==(Color otherColor)
 {
-	if (_r == otherColor.r() && _g == otherColor.g() && _b == otherColor.b() && _a == otherColor.a())
+	if (_rgba == otherColor.rgba())
 	{
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 bool Color::operator!=(Color otherColor)
 {
-	if (_r == otherColor.r() && _g == otherColor.g() && _b == otherColor.b() && _a == otherColor.a())
+	if (_rgba == otherColor.rgba())
 	{
-		return !false;
+		return !true;
 	}
-	return !true;
+	return !false;
+}
+
+void Color::operator=(Color otherColor)
+{
+	_r = otherColor.r();
+	_g = otherColor.g();
+	_b = otherColor.b();
+	_a = otherColor.a();
+	_rgb = otherColor.rgb();
+	_rgba = otherColor.rgba();
 }

@@ -44,4 +44,5 @@ public:
 
 	bool operator==(Color otherColor);
 	bool operator!=(Color otherColor);
+	void operator=(Color otherColor);
 };
