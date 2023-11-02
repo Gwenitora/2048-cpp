@@ -17,11 +17,10 @@ public:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 	vector<vector<SDL_Rect>> _grid;
-	bool _KEYS[322];
 	Window(int sizeX,int sizeY);
 	Window();
 	void Draw();
+	void DrawPlayAgain();
 	void DrawGrid();
-	void GetKey();
-	void HandleInput();
+	void DrawSurface();
 };

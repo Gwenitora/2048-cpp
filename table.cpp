@@ -143,7 +143,7 @@ void Table::ShowGrid()
 {
 	//crée une grid custom pour que peu importe la taille de la grille(qu'elle soit carré ou non)
 	//l'espace à l'intérieur des cases soit le même peu importe le chiffre(ou nombre) à l'intérieur de celles-ci
-	system("CLS");
+	//system("CLS");
 	int maxSize = log10(4 * pow(2, (_sizeX * _sizeY))) - .5f;
 	string preString = " ";
 	string verticalSeperation = " | ";
@@ -212,7 +212,7 @@ void Table::setCells(vector<vector<Cell>> cells)
 
 Cell Table::getCell(int x, int y)
 {
-	//retoure la celle demandé
+	//retourne la cell demandée
 	return _Cells[y][x];
 }
 

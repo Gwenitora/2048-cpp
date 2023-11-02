@@ -13,13 +13,40 @@ Game::Game()
 {
 	_validTexts = { "y", "yes" };
 	_playAgain = true;
-	if (!_test.testing())
+	cout << "Do you want to play on the console?(y/n)"<<endl;
+	cin >> _text;
+	if (_text == _validTexts[0] || _text == _validTexts[1])
 	{
-		return;
+		CmdGame();
 	}
+	else {
+		GraphicGame();
+	}
+}
+
+void Game::PlayAgain() 
+{
+	cout <<endl<< "Do you want to play again?(y/n) ";
+	cin >> _text;
+	if (_text == _validTexts[0] || _text == _validTexts[1])
+	{
+		_playAgain = true;
+		_table._inGame = 1;
+		_table.Regen();
+	}
+	else {
+		_playAgain = false;
+	}
+}
+
+void Game::CmdGame() {
+	//if (!_test.testing())
+	//{
+	//	return;
+	//}
 	int KeyDowned = 0;
 	chrono::steady_clock::time_point timer = chrono::steady_clock::now();
-	while(_playAgain)
+	while (_playAgain)
 	{
 		_table.ShowGrid();
 		while (_table._inGame)
@@ -74,11 +101,118 @@ Game::Game()
 	}
 }
 
-void Game::PlayAgain() 
+void Game::GraphicGame() { 
+	Window _window;
+	int keyDownSDL = 0;
+	while (_playAgain)
+	{
+		_window.DrawSurface();
+		SDL_PumpEvents();
+		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
+		_table.ShowGrid();
+		_window.DrawGrid();
+		for (int j = 0; j < 4; j++)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if ((_table.getCell(i, j)).getValue() != 0) {
+					GameObject Cell;
+					Cell._x = i;
+					Cell._y = j;
+					Cell.setText(to_string((_table.getCell(i, j)).getValue()));
+					_window._objectList.push_back(Cell);
+				}
+			}
+		}
+		_window.Draw();
+		while (_table._inGame)
+		{
+				SDL_Event event;
+				while (SDL_PollEvent(&event)) {
+					switch (event.type) {
+					case SDL_QUIT:
+						//_Game = 0;
+						break;
+					case SDL_KEYDOWN:
+						if (keyDownSDL) {
+							break;
+						}
+						keyDownSDL = 1;
+						switch (event.key.keysym.sym) {
+						case SDLK_LEFT:
+							_table.actionLeft();
+							break;
+						case SDLK_RIGHT:
+							_table.actionRight();
+							break;
+						case SDLK_UP:
+							_table.actionUp();
+							break;
+						case SDLK_DOWN:
+							_table.actionDown();
+							break;
+						default:
+							break;
+						}
+						for (int j = 0; j < 4; j++)
+						{
+							for (int i = 0; i < 4; i++)
+							{
+								if ((_table.getCell(i, j)).getValue() != 0) {
+									GameObject Cell;
+									Cell._x = i;
+									Cell._y = j;
+									Cell.setText(to_string((_table.getCell(i, j)).getValue()));
+									_window._objectList.push_back(Cell);
+								}
+							}
+						}
+						_table.ShowGrid();
+						_window.DrawGrid();
+						_window.Draw();
+						break;
+					case SDL_KEYUP:
+						keyDownSDL = 0;
+						break;
+					default:
+						break;
+					}
+				}
+		}
+		PlayAgainSDL(_window);
+	}
+}
+
+void Game::PlayAgainSDL(Window window)
 {
-	cout <<endl<< "Do you want to play again?(y/n) ";
-	cin >> _text;
-	if (_text == _validTexts[0] || _text == _validTexts[1])
+	window.DrawPlayAgain();
+	bool loop = true;
+	while (loop)
+	{
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			if (SDL_MOUSEBUTTONDOWN == event.type) {
+				if (SDL_BUTTON_LEFT == event.button.button) {
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+					cout << x << " " << y << endl;
+					if (x >= 1280 / 6 + 100 && x <= (1280 / 6 + 100) + 200 && y >= 800 / 5 + 50 && y <= (800 / 5 + 50) + 200) {
+						_playAgain = 1;
+						_table._inGame = 1;
+						_table.Regen();
+						loop = false;
+						break;
+					}
+					else if (x >= 1280 / 6 + 500 && x <= (1280 / 6 + 500) + 200 && y >= 800 / 5 + 50 && y <= (800 / 5 + 50) + 200) {
+						_playAgain = 0;
+						loop = false;
+						break;
+					}
+				}
+			}
+		}
+	}
+	/*if (_text == _validTexts[0] || _text == _validTexts[1])
 	{
 		_playAgain = true;
 		_table._inGame = 1;
@@ -86,5 +220,5 @@ void Game::PlayAgain()
 	}
 	else {
 		_playAgain = false;
-	}
+	}*/
 }
