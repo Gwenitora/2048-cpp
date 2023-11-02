@@ -1,5 +1,8 @@
 #include "colors.h"
 #include "dbColors.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
 DbColors::DbColors()
 {

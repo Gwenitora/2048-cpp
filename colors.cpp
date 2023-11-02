@@ -55,7 +55,7 @@ int Color::rgba()
 
 void Color::printColorHex(bool includeAlpha)
 {
-	cout << "#" << hex << (includeAlpha ? _rgba : _rgb);
+	cout << "#" << hex << (includeAlpha ? _rgba : _rgb) << dec;
 }
 
 void Color::printColor(bool includeAlpha)
