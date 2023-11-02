@@ -15,5 +15,5 @@ public:
 	void genereNew();
 	void setXYGameObject(int x,int y);
 	void setTextGameObject(string str);
-	void drawGameObject(SDL_Renderer* renderer);
+	void drawGameObject(SDL_Renderer* renderer, vector<SDL_Texture*> textures);
 };

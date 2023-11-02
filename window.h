@@ -19,8 +19,7 @@ public:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 	vector<vector<SDL_Rect>> _grid;
-	bool _KEYS[322];
-
+	vector<SDL_Texture*> _textures;
 	DbColors _dbColors;
 
 	Color _bg;

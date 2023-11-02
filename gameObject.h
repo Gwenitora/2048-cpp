@@ -5,6 +5,8 @@
 #include <chrono>
 #include <SDL.h>
 #include<SDL_ttf.h>
+#include <vector>
+#include <string>
 using namespace std;
 
 class GameObject
@@ -56,5 +58,5 @@ public:
 
 	void resetDeltaTime();
 
-	void draw( SDL_Renderer* renderer);
+	void draw( SDL_Renderer* renderer, vector<SDL_Texture*> textures);
 };
