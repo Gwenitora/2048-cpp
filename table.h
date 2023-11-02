@@ -16,25 +16,27 @@ private:
 	int _lengthAllCoords;
 	int _played;
 	vector<Cell*> _list;
+	int _score;
 
 public:
 	Table(int sizeX, int sizeY);
 	Table();
 	void resetAllCells();
-	void Regen();
+	void regen();
 	void setCell(int x, int y, Cell cell);
 	void setCells(vector<vector<Cell>> cells);
 	Cell getCell(int x, int y);
-	void ShowGrid();
-	void RotateGrid(int repeat);
-	void Gen(int number);
+	void showGrid();
+	void rotateGrid(int repeat);
+	void gen(int number);
 	void grip();
 	int gameOver();
 	void fusion();
 	void getEmptyCells();
-	void NextTurn();
+	void nextTurn();
 	void actionLeft(bool lockedWithoutGen = false);
 	void actionRight(bool lockedWithoutGen = false);
 	void actionUp(bool lockedWithoutGen = false);
 	void actionDown(bool lockedWithoutGen = false);
+	int getScore();
 };

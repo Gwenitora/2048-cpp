@@ -25,12 +25,15 @@ public:
 	Color _bg;
 	Color _emptyCell;
 	Color _border;
-
+	TTF_Font* _Arial;
+	SDL_Color _Score;
+	SDL_Rect _rectScore;
 public:
 	Window(int sizeX,int sizeY);
 	Window();
-	void Draw();
-	void DrawPlayAgain();
-	void DrawGrid();
-	void DrawSurface();
+	void draw();
+	void drawplayAgain();
+	void drawGrid();
+	void drawSurface();
+	void drawScore(Table table);
 };

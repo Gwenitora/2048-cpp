@@ -14,12 +14,13 @@ Table::Table(int sizeX, int sizeY)
 	_lengthAllCoords = _sizeY * _sizeX;
 	_inGame = 1;
 	_played = 0;
+	_score = 0;
 	_Cells.resize(_sizeY);
 	for (int j = 0; j < _sizeY; j++)
 	{
 		_Cells[j].resize(_sizeX);
 	}
-	NextTurn();
+	nextTurn();
 }
 
 Table::Table() : Table( 4, 4 )
@@ -30,6 +31,7 @@ Table::Table() : Table( 4, 4 )
 void Table::resetAllCells()
 {
 	//reset toutes les values des cells à 0
+	_score = 0;
 	for (int j = 0; j < _sizeY; j++)
 	{
 		for (int i = 0; i < _sizeX; i++)
@@ -39,14 +41,14 @@ void Table::resetAllCells()
 	}
 }
 
-void Table::Regen()
+void Table::regen()
 {
 	//Regènere la table(fait un nextTurn pour générer les deux valeurs de base)
 	resetAllCells();
-	NextTurn();
+	nextTurn();
 }
 
-void Table::Gen(int number) 
+void Table::gen(int number) 
 {
 	//Appelle genereNew sur une case vide au hasard(ou plusieurs,dépend de la valeur number)
 	int listSize = _list.size();
@@ -74,16 +76,16 @@ void Table::getEmptyCells()
 	}
 }
 
-void Table::NextTurn() {
+void Table::nextTurn() {
 	//Appelle gen pour générer sur une ou plusieurs cases(dépend si toutes les cases sont vides ou non
 	//Appelle gameOver et si gameOver renvoie une valeur "vraie"(en l'occurence 1 ou 2)change la valeur de _inGame
 	_played = 0;
 	getEmptyCells();
 	if (_lengthAllCoords == _list.size()) {
-		Gen(2);
+		gen(2);
 	}
 	else {
-		Gen(1);
+		gen(1);
 	}
 	int isTheGameOver = gameOver();
 	if (isTheGameOver) {
@@ -139,7 +141,7 @@ int Table::gameOver() {
 	return 0;
 }
 
-void Table::ShowGrid()
+void Table::showGrid()
 {
 	//crée une grid custom pour que peu importe la taille de la grille(qu'elle soit carré ou non)
 	//l'espace à l'intérieur des cases soit le même peu importe le chiffre(ou nombre) à l'intérieur de celles-ci
@@ -216,7 +218,7 @@ Cell Table::getCell(int x, int y)
 	return _Cells[y][x];
 }
 
-void Table::RotateGrid(int repeat)
+void Table::rotateGrid(int repeat)
 {
 	//tourne la grille dans le sens horaire
 	Table actual = Table(_sizeX, _sizeY);
@@ -272,6 +274,7 @@ void Table::fusion()
 			{
 				_Cells[j][i - 1].doubl();
 				_Cells[j][i].reset();
+				_score += _Cells[j][i - 1].getValue();
 				_played = 1;
 			}
 		}
@@ -288,48 +291,53 @@ void Table::actionLeft(bool lockedWithoutGen)
 	grip();
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionRight(bool lockedWithoutGen)
 {
 	//Pareil mais vers la droite
 	//on fait tourner la grille de 180°
-	RotateGrid(2);
+	rotateGrid(2);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(2);
+	rotateGrid(2);
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionUp(bool lockedWithoutGen)
 {
 	//Pareil mais vers le haut
 	//on fait tourner la grille de 270°
-	RotateGrid(3);
+	rotateGrid(3);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(1);
+	rotateGrid(1);
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
 }
 void Table::actionDown(bool lockedWithoutGen)
 {
 	//Pareil mais vers le bas
 	//on fait tourner la grille de 90°
-	RotateGrid(1);
+	rotateGrid(1);
 	grip();
 	fusion();
 	grip();
-	RotateGrid(3);
+	rotateGrid(3);
 	if (!lockedWithoutGen && _played)
 	{
-		NextTurn();
+		nextTurn();
 	}
+}
+
+int Table::getScore()
+{
+	return _score;
 }

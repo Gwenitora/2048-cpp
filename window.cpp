@@ -20,12 +20,13 @@ Window::Window(int sizeX,int sizeY) {
 		 "retry.png"
 	 };
 	 TTF_Init(); 
-	 TTF_Font* Arial = TTF_OpenFont("Arial/arial.ttf", 48);
+	 _Arial = TTF_OpenFont("Arial/arial.ttf", 48);
+	 _Score = { 0,0,0 };
 	 Color actualColorText;
 	 SDL_Color Black = { actualColorText.r(), actualColorText.g(), actualColorText.b() };
 	 for (int i = 1; i < 12; i++)
 	 {
-		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, to_string(int(pow(2, i))).c_str(), Black);
+		 SDL_Surface* surfaceMessage = TTF_RenderText_Solid(_Arial, to_string(int(pow(2, i))).c_str(), Black);
 		 SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
 		 _textures[i-1] = texture;
 	 }
@@ -58,8 +59,8 @@ Window::Window(int sizeX,int sizeY) {
 	 }
 	 SDL_SetRenderDrawColor(_renderer, _bg.r(), _bg.g(), _bg.b(), _bg.a());
 	 SDL_RenderClear(_renderer);
-	 //DrawGrid();
-	 //Draw();
+	 //drawGrid();
+	 //draw();
 	 //GetKey();
 	 //SDL_RenderPresent(_renderer);
 
@@ -73,7 +74,7 @@ Window::Window() : Window(1280, 800) {
 
 }
 
-void Window::DrawGrid() {
+void Window::drawGrid() {
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 4; i++) {
 			_grid[j][i].x = (1280 / 4) + 20 + (145 * i);
@@ -98,7 +99,7 @@ void Window::DrawGrid() {
 	SDL_RenderPresent(_renderer);
 }
 
-void Window::Draw() {
+void Window::draw() {
 	for (int i = 0; i < _objectList.size(); i++)
 	{
 		_objectList[i].drawGameObject( _renderer, _textures);
@@ -107,7 +108,7 @@ void Window::Draw() {
 	SDL_RenderPresent(_renderer);
 }
 
-void Window::DrawPlayAgain() {
+void Window::drawplayAgain() {
 	SDL_Rect backPlayAgain;
 	backPlayAgain.x = 1280 / 6;
 	backPlayAgain.y = 800 / 5;
@@ -134,7 +135,22 @@ void Window::DrawPlayAgain() {
 	SDL_RenderPresent(_renderer);
 }
 
-void Window::DrawSurface() {
+void Window::drawScore(Table table) 
+{
+	_rectScore.x = 1280 / 6 + 500;
+	_rectScore.y = 0;
+	_rectScore.h = 50;
+	_rectScore.w = 100;
+	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(_Arial, to_string(table.getScore()).c_str(), _Score);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, surfaceMessage);
+	SDL_SetRenderDrawColor(_renderer, _bg.r(), _bg.g(), _bg.b(), _bg.a());
+	SDL_RenderFillRect(_renderer, &_rectScore);
+	SDL_RenderCopy(_renderer, texture, NULL, &_rectScore);
+	SDL_FreeSurface(surfaceMessage);
+	SDL_DestroyTexture(texture);
+}
+
+void Window::drawSurface() {
 	SDL_SetRenderDrawColor(_renderer, 250, 248, 239, 255);
 	SDL_RenderClear(_renderer);
 }

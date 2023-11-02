@@ -9,11 +9,11 @@ class Game
 	string _text;
 	vector<string> _validTexts;
 	bool _playAgain;
-	void PlayAgain();
-	void PlayAgainSDL(Window window);
+	void playAgain();
+	void playAgainSDL(Window window);
 	Integration _test;
-	void CmdGame();
-	void GraphicGame();
+	void cmdGame();
+	void graphicGame();
 public:
 	Game();
 };
