@@ -76,7 +76,7 @@
       <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
     <ClCompile Include="dbColors.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Game\Graphic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

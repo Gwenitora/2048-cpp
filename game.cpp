@@ -114,6 +114,7 @@ void Game::graphicGame() {
 		SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 		_table.showGrid();
 		_window.drawGrid();
+		_window.drawScore(_table);
 		tableSDL.resize(4);
 		for (int j = 0; j < 4; j++)
 		{
@@ -169,6 +170,7 @@ void Game::graphicGame() {
 						}
 					}
 					_table.showGrid();
+					_window.drawScore(_table);
 					_window.draw();
 					break;
 				case SDL_KEYUP:
