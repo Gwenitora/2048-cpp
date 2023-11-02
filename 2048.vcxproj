@@ -138,6 +138,7 @@
     <ClCompile Include="cell.cpp" />
     <ClCompile Include="cmd.cpp" />
     <ClCompile Include="colors.cpp" />
+    <ClCompile Include="dbColors.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="graphic.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="cell.h" />
     <ClInclude Include="cmd.h" />
     <ClInclude Include="colors.h" />
+    <ClInclude Include="dbColors.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="graphic.h" />

@@ -49,7 +49,7 @@ void GameObject::goTo(Vect2 v, bool animated)
 {
 	if (!animated)
 	{
-		_size += (v - _targetPos);
+		_pos += (v - _targetPos);
 	}
 	_targetPos = v;
 }
@@ -98,8 +98,8 @@ void GameObject::draw(SDL_Renderer* renderer)
 	//int deltaTime = chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - _lastTime).count();
 	// calcul puis draw ici !!!
 	SDL_Rect cell;
-	cell.x = (1280 / 4) + 20 + (145 * _x);
-	cell.y = (800 / 8) + 20 + (145 * _y);
+	cell.x = (1280 / 4) + 20 + (145 * _pos.x());
+	cell.y = (800 / 8) + 20 + (145 * _pos.y());
 	cell.h = 125;
 	cell.w = 125;
 	SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
@@ -109,8 +109,8 @@ void GameObject::draw(SDL_Renderer* renderer)
 	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Arial, _textContent.c_str(), Black);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 	SDL_Rect dstrect;
-	dstrect.x = (1280 / 4) + 55 + (145 * _x);
-	dstrect.y = (800 / 8) + 60 + (145 * _y);
+	dstrect.x = (1280 / 4) + 55 + (145 * _pos.x());
+	dstrect.y = (800 / 8) + 60 + (145 * _pos.y());
 	dstrect.h = 50;
 	dstrect.w = 50;
 	if(_textContent != "0")

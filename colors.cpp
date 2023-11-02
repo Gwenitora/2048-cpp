@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Color::Color() : Color(0, 1)
+Color::Color() : Color(0, 255)
 {
 }
 
@@ -65,7 +65,7 @@ void Color::printColor(bool includeAlpha)
 	{
 		cout << ", " << _a;
 	}
-	cout << "}";
+	cout << "} ";
 }
 
 Color Color::mixin(Color otherCol, float pct)
@@ -149,4 +149,13 @@ void Color::setRGBA(int rgb, int a)
 	_b = rgb % 0x100;
 	_g = (rgb % 0x10000) / 0x100;
 	_r = rgb / 0x10000;
+}
+
+bool Color::operator==(Color otherColor)
+{
+	if (_r == otherColor.r() && _g == otherColor.g() && _b == otherColor.b() && _a == otherColor.a())
+	{
+		return true;
+	}
+	return false;
 }

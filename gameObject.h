@@ -9,11 +9,6 @@ using namespace std;
 
 class GameObject
 {
-public:
-	Color _text;
-	Color _bg;
-	int _x;
-	int _y;
 private:
 	string _textContent;
 	int _borderRadius;
@@ -31,6 +26,12 @@ private:
 
 	Vect2 _size;
 	Vect2 _targetSize;
+
+	float _pctColor;
+	Color _text;
+	Color _targetText;
+	Color _bg;
+	Color _targetBg;
 
 	chrono::steady_clock::time_point _lastTime;
 
