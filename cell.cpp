@@ -44,5 +44,6 @@ void Cell::setTextGameObject(string str)
 
 void Cell::drawGameObject(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 {
+    //appelle draw de gameObject
     draw(renderer, textures);
 }
