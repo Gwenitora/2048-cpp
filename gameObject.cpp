@@ -15,7 +15,7 @@ GameObject::GameObject()
 	_speedSize = 0;
 	_speedPos = 0;
 	_speedColor = 0;
-	_pctColor = 0;
+	_pctColor = 1;
 
 	_text = _dbColor.getNumber(0);
 	_bg = _dbColor.getNumber(0);
@@ -116,6 +116,15 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 {
 	//int deltaTime = chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - _lastTime).count();
 	// calcul puis draw ici !!!
+	cout << endl << stoi(_textContent) << " : ";
+	_targetBg.printColor(true);
+	cout << ": ";
+	_targetBg.printColorHex(true);
+	if (_targetBg != _dbColor.getNumber(stoi(_textContent)))
+	{
+		_targetBg = _dbColor.getNumber(stoi(_textContent));
+	}
+
 	SDL_Rect cell;
 	cell.x = (1280 / 4) + 20 + (145 * _x);
 	cell.y = (800 / 8) + 20 + (145 * _y);
@@ -132,9 +141,11 @@ void GameObject::draw(SDL_Renderer* renderer, vector<SDL_Texture*> textures)
 	dstrect.w = 50;
 	if(_textContent != "0")
 	{
-		SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
+		Color actualColorBg;
+		_bg.mixin(_targetBg, &actualColorBg, _pctColor);
+		SDL_SetRenderDrawColor(renderer, actualColorBg.r(), actualColorBg.g(), actualColorBg.b(), actualColorBg.a());
 		SDL_RenderFillRect(renderer, &cell);
-		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent))], NULL, &dstrect);
+		SDL_RenderCopy(renderer, textures[log2(stoi(_textContent)) -1], NULL, &dstrect);
 	}
 	//resetDeltaTime();s
 }
